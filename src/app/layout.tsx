@@ -18,6 +18,9 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "DakshDynamics | Engineering & Academy",
   description: "Deploy enterprise AI architectures, multi-agent RAGs, and custom IoT hardware.",
+  verification: {
+    google: "kRwiLCWFO7efOoqt0QZhZr3WlFVT1y7fnAK5tmc6t18",
+  },
 };
 
 export default function RootLayout({
