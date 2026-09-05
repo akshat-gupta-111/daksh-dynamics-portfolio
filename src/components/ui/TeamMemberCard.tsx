@@ -42,6 +42,7 @@ export default function TeamMemberCard({
     // Always a div — never an <a>. Navigation via router.push to avoid nested <a> hydration error.
     <div
       className={`card group p-6 flex flex-col items-center text-center h-full ${slug ? "cursor-pointer hover:shadow-md transition-shadow" : ""}`}
+      data-navigation={slug ? `/team/${slug}` : undefined}
       onClick={slug ? handleCardClick : undefined}
       role={slug ? "link" : undefined}
       tabIndex={slug ? 0 : undefined}

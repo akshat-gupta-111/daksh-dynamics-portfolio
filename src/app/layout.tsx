@@ -1,6 +1,7 @@
 // filepath: src/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import NavigationLoader from "@/components/layout/NavigationLoader";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -31,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="bg-black text-white font-sans antialiased selection:bg-accent selection:text-black">
+        <NavigationLoader />
         {children}
       </body>
     </html>
