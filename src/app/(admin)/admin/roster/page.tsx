@@ -36,10 +36,11 @@ export default async function RosterListPage() {
         </div>
       ) : (
         <div className="flex flex-col gap-2">
-          <div className="grid grid-cols-[auto_1fr_auto_auto_auto] gap-4 px-4 py-2 font-mono text-[10px] text-gray-600 uppercase">
+          <div className="grid grid-cols-[auto_1fr_auto_auto_auto_auto] gap-4 px-4 py-2 font-mono text-[10px] text-gray-600 uppercase">
             <span>Ord</span>
             <span>Member</span>
             <span>Status</span>
+            <span className="w-20 text-center">Edit</span>
             <span className="w-28 text-center">Publish</span>
             <span className="w-20 text-center">Delete</span>
           </div>
@@ -47,7 +48,7 @@ export default async function RosterListPage() {
           {members.map((m) => (
             <div
               key={m.id}
-              className="grid grid-cols-[auto_1fr_auto_auto_auto] gap-4 items-center brutalist-box px-4 py-4 hover:bg-gray-900/40 transition-colors"
+              className="grid grid-cols-[auto_1fr_auto_auto_auto_auto] gap-4 items-center brutalist-box px-4 py-4 hover:bg-gray-900/40 transition-colors"
             >
               <span className="font-mono text-xs text-accent w-6">
                 {String(m.displayOrder).padStart(2, "0")}
@@ -67,6 +68,13 @@ export default async function RosterListPage() {
               >
                 {m.isPublished ? "LIVE" : "DRAFT"}
               </span>
+
+              <Link
+                href={`/admin/roster/${m.id}/edit`}
+                className="w-20 text-center font-mono text-[10px] border border-gray-700 px-3 py-1.5 hover:border-accent hover:text-accent transition-colors"
+              >
+                EDIT
+              </Link>
 
               <form action={toggleMemberPublish}>
                 <input type="hidden" name="id" value={m.id} />

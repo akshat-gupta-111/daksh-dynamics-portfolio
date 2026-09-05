@@ -4,9 +4,15 @@
 import { useState } from "react";
 import { getUploadUrl } from "@/lib/azure";
 
-export default function ImageDropzone({ name }: { name: string }) {
+export default function ImageDropzone({
+  name,
+  initialUrl = "",
+}: {
+  name: string;
+  initialUrl?: string;
+}) {
   const [status, setStatus] = useState<"IDLE" | "UPLOADING" | "SUCCESS" | "ERROR">("IDLE");
-  const [finalUrl, setFinalUrl] = useState<string>("");
+  const [finalUrl, setFinalUrl] = useState<string>(initialUrl);
 
   async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -53,7 +59,7 @@ export default function ImageDropzone({ name }: { name: string }) {
         />
         
         <div className="font-mono text-sm text-gray-500 text-center pointer-events-none">
-          {status === "IDLE" && "[CLICK_OR_DRAG_FILE]"}
+          {status === "IDLE" && (initialUrl ? "[CURRENT_ASSET_READY — SELECT_TO_REPLACE]" : "[CLICK_OR_DRAG_FILE]")}
           {status === "UPLOADING" && <span className="text-accent animate-pulse">UPLOADING_TO_AZURE...</span>}
           {status === "SUCCESS" && <span className="text-green-500">ASSET_LOCKED</span>}
           {status === "ERROR" && <span className="text-red-500">UPLOAD_FAILED</span>}
