@@ -36,10 +36,11 @@ export default async function AcademyListPage() {
         </div>
       ) : (
         <div className="flex flex-col gap-2">
-          <div className="grid grid-cols-[1fr_auto_auto_auto_auto] gap-4 px-4 py-2 font-mono text-[10px] text-gray-600 uppercase">
+          <div className="grid grid-cols-[1fr_auto_auto_auto_auto_auto] gap-4 px-4 py-2 font-mono text-[10px] text-gray-600 uppercase">
             <span>Title</span>
             <span>Type</span>
             <span>Status</span>
+            <span className="w-20 text-center">Edit</span>
             <span className="w-28 text-center">Publish</span>
             <span className="w-20 text-center">Delete</span>
           </div>
@@ -47,7 +48,7 @@ export default async function AcademyListPage() {
           {workshops.map((w) => (
             <div
               key={w.id}
-              className="grid grid-cols-[1fr_auto_auto_auto_auto] gap-4 items-center brutalist-box px-4 py-4 hover:bg-gray-900/40 transition-colors"
+              className="grid grid-cols-[1fr_auto_auto_auto_auto_auto] gap-4 items-center brutalist-box px-4 py-4 hover:bg-gray-900/40 transition-colors"
             >
               <div>
                 <p className="font-sans font-semibold text-sm text-white truncate">{w.title}</p>
@@ -69,6 +70,13 @@ export default async function AcademyListPage() {
               >
                 {w.isPublished ? "LIVE" : "DRAFT"}
               </span>
+
+              <Link
+                href={`/admin/academy/${w.id}/edit`}
+                className="w-20 text-center font-mono text-[10px] border border-gray-700 px-3 py-1.5 hover:border-accent hover:text-accent transition-colors"
+              >
+                EDIT
+              </Link>
 
               <form action={toggleWorkshopPublish}>
                 <input type="hidden" name="id" value={w.id} />
