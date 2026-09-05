@@ -10,71 +10,58 @@ interface TeamMemberCardProps {
   displayOrder: number;
 }
 
-export default function TeamMemberCard({
-  name,
-  role,
-  bio,
-  techStack,
-  photoUrl,
-  displayOrder,
-}: TeamMemberCardProps) {
-  const orderLabel = String(displayOrder).padStart(2, "0");
+export default function TeamMemberCard({ name, role, bio, techStack, photoUrl, displayOrder }: TeamMemberCardProps) {
+  // Extract initials from name like "AKSHAT_GUPTA" → "AG"
+  const initials = name
+    .split(/[_\s]+/)
+    .map((w) => w.charAt(0))
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
-    <div className="brutalist-box flex flex-col overflow-hidden group">
+    <div className="card group p-6 flex flex-col items-center text-center">
 
-      {/* Photo / Fallback */}
-      <div className="h-48 w-full border-b border-gray-800 bg-gray-950 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+      {/* Avatar — circular, NOT full-bleed */}
+      <div className="w-24 h-24 rounded-full overflow-hidden mb-4 flex-shrink-0 border-4 border-white shadow-md ring-2 ring-blue-100 group-hover:ring-blue-300 transition-all duration-200">
         {photoUrl ? (
           <Image
             src={photoUrl}
             alt={name}
-            fill
-            className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+            width={96}
+            height={96}
+            className="w-full h-full object-cover object-top"
           />
         ) : (
-          // Initials fallback
-          <div className="w-full h-full bg-[linear-gradient(rgba(34,34,34,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(34,34,34,0.3)_1px,transparent_1px)] bg-[size:16px_16px] flex items-center justify-center">
-            <span className="font-mono text-4xl font-bold text-gray-700 group-hover:text-gray-600 transition-colors select-none">
-              {name.charAt(0)}
-            </span>
+          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+            <span className="text-white font-bold text-xl tracking-wide">{initials}</span>
           </div>
         )}
-        <div className="absolute top-2 right-2 w-2 h-2 bg-gray-800 group-hover:bg-accent transition-colors duration-150 z-10" />
       </div>
 
-      {/* Body */}
-      <div className="p-8 flex flex-col flex-1">
+      {/* Order badge */}
+      <span className="badge-gray text-xs mb-3">#{String(displayOrder).padStart(2, "0")}</span>
 
-        {/* Order badge + team label */}
-        <div className="flex justify-between items-center mb-6 font-mono text-xs text-gray-500">
-          <span className="text-accent">[{orderLabel}]</span>
-          <span>DAKSH_CORE</span>
-        </div>
+      {/* Name */}
+      <h2 className="font-bold text-slate-900 text-base mb-1 leading-tight">
+        {name.replace(/_/g, " ").split(" ").map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(" ")}
+      </h2>
 
-        {/* Name + Role */}
-        <h2 className="text-2xl font-bold tracking-wide mb-2">{name}</h2>
-        <p className="font-mono text-xs text-accent mb-6">{role}</p>
+      {/* Role */}
+      <p className="text-blue-600 text-xs font-semibold mb-3 leading-snug">
+        {role.replace(/_/g, " ")}
+      </p>
 
-        {/* Bio */}
-        <p className="font-sans text-sm text-gray-400 leading-relaxed mb-8 flex-1">{bio}</p>
+      {/* Bio */}
+      <p className="text-slate-500 text-sm leading-relaxed mb-5 line-clamp-3">{bio}</p>
 
-        {/* Tech DNA tags */}
-        <div>
-          <p className="font-mono text-[10px] text-gray-500 mb-3">TECH_DNA</p>
-          <div className="flex flex-wrap gap-2">
-            {techStack.map((t) => (
-              <span
-                key={t}
-                className="px-2 py-1 bg-gray-900 border border-gray-800 font-mono text-[10px] text-gray-300 group-hover:border-gray-600 transition-colors"
-              >
-                [{t}]
-              </span>
-            ))}
-          </div>
-        </div>
-
+      {/* Tech DNA */}
+      <div className="flex flex-wrap justify-center gap-1.5 mt-auto">
+        {techStack.map((t) => (
+          <span key={t} className="badge-gray text-xs">{t}</span>
+        ))}
       </div>
+
     </div>
   );
 }

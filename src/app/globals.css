@@ -1,62 +1,248 @@
 /* filepath: src/app/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  /* Our Strict Brutalist Palette */
-  --color-black: #050505;
-  --color-white: #F5F5F5;
-  --color-gray-900: #111111;
-  --color-gray-800: #222222;
-  --color-gray-400: #888888;
-  --color-accent: #00E5FF; /* Electric Cyan */
-  
-  /* Next.js Font Variable Mapping */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* ── Public Light Theme ──────────────────────────────── */
+  --color-bg:             #F8FAFC;
+  --color-surface:        #FFFFFF;
+  --color-border:         #E2E8F0;
+  --color-text-primary:   #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-muted:     #94A3B8;
+
+  /* Brand: Solutions = Blue, Academy = Purple */
+  --color-blue:           #2563EB;
+  --color-blue-hover:     #1D4ED8;
+  --color-blue-light:     #EFF6FF;
+  --color-blue-mid:       #BFDBFE;
+  --color-purple:         #7C3AED;
+  --color-purple-hover:   #6D28D9;
+  --color-purple-light:   #F5F3FF;
+  --color-purple-mid:     #DDD6FE;
+
+  /* Status */
+  --color-success:        #16A34A;
+  --color-success-light:  #F0FDF4;
+  --color-error:          #DC2626;
+  --color-error-light:    #FEF2F2;
+
+  /* ── Admin Dark Theme (kept for admin portal) ─────────── */
+  --color-black:          #050505;
+  --color-white:          #F5F5F5;
+  --color-gray-900:       #111111;
+  --color-gray-800:       #222222;
+  --color-gray-400:       #888888;
+  --color-accent:         #2563EB;
+
+  /* ── Typography ──────────────────────────────────────── */
+  --font-sans: 'Inter', var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
+/* ── Base ────────────────────────────────────────────────── */
 @layer base {
   body {
-    background-color: var(--color-black);
-    color: var(--color-white);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background-color: var(--color-accent);
-    color: var(--color-black);
+    background-color: var(--color-blue);
+    color: #fff;
   }
 
-  /* Mechanical Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: var(--color-black);
-    border-left: 1px solid var(--color-gray-800);
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--color-gray-800);
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-accent);
-  }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--color-bg); }
+  ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
 }
 
+/* ── Components ──────────────────────────────────────────── */
 @layer components {
-  /* The foundational 1px border structural class */
+
+  /* ─ Cards (public light) ─ */
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    transition: box-shadow .2s ease, transform .2s ease;
+  }
+  .card:hover {
+    box-shadow: 0 12px 28px rgba(0,0,0,.09), 0 4px 12px rgba(0,0,0,.05);
+    transform: translateY(-3px);
+  }
+  .card-blue {
+    background: linear-gradient(135deg, var(--color-blue-light) 0%, #fff 100%);
+    border: 1px solid var(--color-blue-mid);
+    border-radius: 1.25rem;
+    transition: box-shadow .2s ease, transform .2s ease;
+  }
+  .card-blue:hover {
+    box-shadow: 0 12px 28px rgba(37,99,235,.12);
+    transform: translateY(-3px);
+  }
+  .card-purple {
+    background: linear-gradient(135deg, var(--color-purple-light) 0%, #fff 100%);
+    border: 1px solid var(--color-purple-mid);
+    border-radius: 1.25rem;
+    transition: box-shadow .2s ease, transform .2s ease;
+  }
+  .card-purple:hover {
+    box-shadow: 0 12px 28px rgba(124,58,237,.12);
+    transform: translateY(-3px);
+  }
+
+  /* ─ Buttons ─ */
+  .btn-blue {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background-color: var(--color-blue);
+    color: #fff;
+    border-radius: .625rem;
+    font-weight: 600;
+    font-size: .9rem;
+    padding: .6rem 1.4rem;
+    transition: background-color .15s, transform .15s, box-shadow .15s;
+    box-shadow: 0 1px 3px rgba(37,99,235,.3);
+  }
+  .btn-blue:hover {
+    background-color: var(--color-blue-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37,99,235,.35);
+  }
+  .btn-purple {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background-color: var(--color-purple);
+    color: #fff;
+    border-radius: .625rem;
+    font-weight: 600;
+    font-size: .9rem;
+    padding: .6rem 1.4rem;
+    transition: background-color .15s, transform .15s, box-shadow .15s;
+    box-shadow: 0 1px 3px rgba(124,58,237,.3);
+  }
+  .btn-purple:hover {
+    background-color: var(--color-purple-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(124,58,237,.35);
+  }
+  .btn-outline-blue {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    border: 2px solid var(--color-blue);
+    color: var(--color-blue);
+    border-radius: .625rem;
+    font-weight: 600;
+    font-size: .9rem;
+    padding: .55rem 1.4rem;
+    background: transparent;
+    transition: background-color .15s, transform .15s;
+  }
+  .btn-outline-blue:hover {
+    background-color: var(--color-blue-light);
+    transform: translateY(-1px);
+  }
+  .btn-outline-purple {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    border: 2px solid var(--color-purple);
+    color: var(--color-purple);
+    border-radius: .625rem;
+    font-weight: 600;
+    font-size: .9rem;
+    padding: .55rem 1.4rem;
+    background: transparent;
+    transition: background-color .15s, transform .15s;
+  }
+  .btn-outline-purple:hover {
+    background-color: var(--color-purple-light);
+    transform: translateY(-1px);
+  }
+
+  /* ─ Badges / Pills ─ */
+  .badge-blue {
+    display: inline-block;
+    background-color: var(--color-blue-light);
+    color: var(--color-blue);
+    padding: .2rem .75rem;
+    border-radius: 9999px;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+  .badge-purple {
+    display: inline-block;
+    background-color: var(--color-purple-light);
+    color: var(--color-purple);
+    padding: .2rem .75rem;
+    border-radius: 9999px;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+  .badge-gray {
+    display: inline-block;
+    background-color: #F1F5F9;
+    color: var(--color-text-secondary);
+    padding: .2rem .75rem;
+    border-radius: 9999px;
+    font-size: .72rem;
+    font-weight: 500;
+  }
+
+  /* ─ Section label (eyebrow text) ─ */
+  .section-label {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  /* ─ Input (public light) ─ */
+  .input-light {
+    background-color: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: .625rem;
+    color: var(--color-text-primary);
+    padding: .7rem 1rem;
+    font-family: var(--font-sans);
+    transition: border-color .15s, box-shadow .15s;
+    width: 100%;
+  }
+  .input-light:focus {
+    outline: none;
+    border-color: var(--color-blue);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.1);
+  }
+  .input-light::placeholder { color: var(--color-text-muted); }
+
+  /* ─ Alert banners ─ */
+  .alert-success {
+    background-color: var(--color-success-light);
+    border: 1px solid #BBF7D0;
+    color: var(--color-success);
+    border-radius: .75rem;
+    padding: .875rem 1.25rem;
+    font-size: .875rem;
+    font-weight: 500;
+  }
+
+  /* ─ Brutalist box (admin portal — dark) ─ */
   .brutalist-box {
     background-color: var(--color-black);
     border: 1px solid var(--color-gray-800);
-    transition-property: border-color;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+    transition: border-color .15s ease;
   }
-  
-  /* Instantly snaps border to accent color on hover */
-  .brutalist-box:hover {
-    border-color: var(--color-accent);
-  }
+  .brutalist-box:hover { border-color: var(--color-accent); }
 }

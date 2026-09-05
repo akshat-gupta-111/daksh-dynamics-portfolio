@@ -3,7 +3,12 @@ import { db } from "@/lib/db";
 import { siteMetrics } from "@/lib/db/schema";
 import { updateMetrics } from "./actions";
 
-export default async function MetricsPage() {
+interface PageProps {
+  searchParams: Promise<{ saved?: string }>;
+}
+
+export default async function MetricsPage({ searchParams }: PageProps) {
+  const { saved } = await searchParams;
   // Fetch the current values to pre-fill the form
   const [metrics] = await db.select().from(siteMetrics).limit(1);
 
@@ -22,6 +27,14 @@ export default async function MetricsPage() {
           {"//"} OPERATIONAL_TELEMETRY — displayed on the public home page
         </p>
       </div>
+
+      {/* Success banner */}
+      {saved === "1" && (
+        <div className="alert-success mb-6 flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#16A34A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          Metrics updated — home page now reflects the new numbers.
+        </div>
+      )}
 
       <div className="brutalist-box p-4 mb-8 bg-gray-900/20 font-mono text-xs text-gray-500">
         <span className="text-accent">LAST_UPDATED:</span> {lastUpdated}

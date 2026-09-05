@@ -1,170 +1,169 @@
 // filepath: src/app/(public)/page.tsx
 import Link from "next/link";
+import Image from "next/image";
 import { db } from "@/lib/db";
 import { siteMetrics } from "@/lib/db/schema";
 
 export default async function HomePage() {
-  // Read the single admin-controlled metrics row
   const [metrics] = await db.select().from(siteMetrics).limit(1);
-
   const systemsDeployed     = metrics?.systemsDeployed     ?? 0;
   const workshopsConducted  = metrics?.workshopsConducted  ?? 0;
   const participantsTrained = metrics?.participantsTrained ?? 0;
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-[var(--color-bg)]">
 
-      {/* =========================================
-          NEUTRAL HOME NAVBAR — logo only, no section links.
-          The two panels below ARE the navigation.
-          ========================================= */}
-      <nav className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/90 backdrop-blur-sm">
+      {/* ── Navbar ─────────────────────────────────────────── */}
+      <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-sm">
         <div className="flex h-16 items-center justify-between px-6 max-w-7xl mx-auto">
-          <div className="font-sans font-bold tracking-widest text-lg">
-            <Link href="/" className="hover:text-accent transition-colors">
-              DAKSH_DYNAMICS
-            </Link>
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm">D</div>
+            <span className="font-bold text-slate-900 text-base tracking-tight">Daksh Dynamics</span>
+          </Link>
+          <div className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+            <Link href="/solutions" className="hover:text-blue-600 transition-colors">Solutions</Link>
+            <Link href="/academy"   className="hover:text-violet-600 transition-colors">Academy</Link>
+            <Link href="/team"   className="hover:text-slate-900 transition-colors">Team</Link>
+            <Link href="/contact"   className="hover:text-slate-900 transition-colors">Contact</Link>
           </div>
-          <div className="flex items-center gap-3 font-mono text-xs text-gray-400">
-            <span className="hidden sm:inline">STATUS: OPERATIONAL</span>
-            <div className="h-2 w-2 bg-accent animate-pulse shadow-[0_0_8px_#00E5FF]"></div>
-          </div>
+          <Link href="/contact" className="btn-blue text-sm hidden md:inline-flex">Get in Touch →</Link>
         </div>
       </nav>
 
-      {/* =========================================
-          SECTION 1: THE HERO & BIFURCATION FUNNEL
-          ========================================= */}
-      <div className="flex flex-col min-h-[calc(100vh-4rem)]">
-        <div className="flex-1 flex items-center justify-center p-8 md:p-16 border-b border-gray-800">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-sans font-extrabold tracking-tighter uppercase leading-tight text-center max-w-5xl">
-            We engineer <span className="text-accent">autonomous systems</span>.
-            <br className="hidden md:block" />
-            We train the next generation.
-          </h1>
-        </div>
-
-        <div className="flex-1 flex flex-col md:flex-row">
-          <Link
-            href="/solutions"
-            className="group flex-1 flex flex-col justify-center p-8 md:p-16 border-b md:border-b-0 md:border-r border-gray-800 brutalist-box relative"
-          >
-            <div className="relative z-10">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 tracking-wide">[ SOLUTIONS ]</h2>
-              <p className="text-gray-400 font-mono text-sm max-w-md leading-relaxed">
-                Deploy enterprise AI architectures, multi-agent RAGs, and custom IoT hardware.
-              </p>
-              <div className="mt-8 font-mono text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-150">
-                {">"} Initialize Deployment_
-              </div>
-            </div>
-          </Link>
-
-          <Link
-            href="/academy"
-            className="group flex-1 flex flex-col justify-center p-8 md:p-16 brutalist-box relative"
-          >
-            <div className="relative z-10">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 tracking-wide">[ ACADEMY ]</h2>
-              <p className="text-gray-400 font-mono text-sm max-w-md leading-relaxed">
-                Rigorous FDPs and technical workshops backed by production-level engineering.
-              </p>
-              <div className="mt-8 font-mono text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-150">
-                {">"} View Portfolio_
-              </div>
-            </div>
-          </Link>
-        </div>
-      </div>
-
-      {/* =========================================
-          SECTION 2: NEUTRAL IMPACT STATS
-          Manually controlled by admin — both audiences see credibility.
-          ========================================= */}
-      <div className="border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-6 py-20">
-
-          <p className="font-mono text-xs text-gray-500 text-center mb-12 tracking-widest uppercase">
-            {"//"} OPERATIONAL_TELEMETRY
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-gray-800">
-
-            <div className="brutalist-box p-10 flex flex-col items-center justify-center text-center md:border-r border-gray-800">
-              <p className="text-5xl md:text-6xl font-extrabold tracking-tighter text-white mb-3">
-                {systemsDeployed}
-              </p>
-              <p className="font-mono text-xs text-accent tracking-widest uppercase">
-                Systems Deployed
-              </p>
-              <p className="font-mono text-[10px] text-gray-600 mt-2">
-                Enterprise AI · Robotics · IoT
-              </p>
-            </div>
-
-            <div className="brutalist-box p-10 flex flex-col items-center justify-center text-center md:border-r border-gray-800">
-              <p className="text-5xl md:text-6xl font-extrabold tracking-tighter text-white mb-3">
-                {workshopsConducted}
-              </p>
-              <p className="font-mono text-xs text-accent tracking-widest uppercase">
-                Workshops Conducted
-              </p>
-              <p className="font-mono text-[10px] text-gray-600 mt-2">
-                FDPs · Bootcamps · Intensives
-              </p>
-            </div>
-
-            <div className="brutalist-box p-10 flex flex-col items-center justify-center text-center">
-              <p className="text-5xl md:text-6xl font-extrabold tracking-tighter text-white mb-3">
-                {participantsTrained > 0 ? `${participantsTrained}+` : "—"}
-              </p>
-              <p className="font-mono text-xs text-accent tracking-widest uppercase">
-                Participants Trained
-              </p>
-              <p className="font-mono text-[10px] text-gray-600 mt-2">
-                Engineers · Researchers · Faculty
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      {/* =========================================
-          HOME FOOTER — neutral, shows both contact paths
-          ========================================= */}
-      <footer className="border-t border-gray-800 bg-black py-16 px-6">
+      {/* ── Hero ───────────────────────────────────────────── */}
+      <section className="bg-gradient-to-b from-slate-50 via-blue-50/40 to-[var(--color-bg)] pt-20 pb-24 px-6 text-center">
         <div className="max-w-4xl mx-auto">
-          <div className="brutalist-box bg-gray-900/50 p-6 shadow-2xl">
-            <div className="flex gap-2 mb-4 border-b border-gray-800 pb-4">
-              <div className="w-3 h-3 bg-gray-700"></div>
-              <div className="w-3 h-3 bg-gray-700"></div>
-              <div className="w-3 h-3 bg-gray-700"></div>
-            </div>
-            <div className="font-mono text-sm md:text-base text-gray-400 leading-relaxed">
-              <p className="text-white">root@dakshdynamics:~# ./initiate_contact.sh</p>
-              <p className="mt-2">Initializing secure connection...</p>
-              <p>Select target vector:</p>
-              <div className="mt-4 flex flex-col gap-2 pl-4">
-                <Link href="/contact?type=enterprise" className="hover:text-accent transition-colors w-fit">
-                  [1] Enterprise_Solutions_Inquiry
-                </Link>
-                <Link href="/contact?type=academy" className="hover:text-accent transition-colors w-fit">
-                  [2] Academic_Workshop_Booking
-                </Link>
-              </div>
-              <div className="mt-6 flex items-center gap-2 text-accent">
-                <span>{">"} Awaiting input</span>
-                <span className="w-2 h-4 bg-accent animate-pulse inline-block"></span>
-              </div>
-            </div>
+          <span className="badge-blue mb-5 inline-block">Based in India · Deployed Globally</span>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.08] mb-6">
+            We build{" "}
+            <span className="text-blue-600">autonomous</span>
+            {" "}systems.{" "}
+            <br className="hidden md:block" />
+            We train{" "}
+            <span className="text-violet-600">engineers</span>.
+          </h1>
+          <p className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            Enterprise AI deployments, edge robotics, and rigorous academic workshops — all backed by production-level engineering.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link href="/solutions" className="btn-blue text-base px-6 py-3">View Deployed Systems →</Link>
+            <Link href="/academy"   className="btn-outline-purple text-base px-6 py-3">Academy Portfolio</Link>
           </div>
-          <div className="mt-12 flex flex-col md:flex-row items-center justify-between font-mono text-xs text-gray-600">
-            <p>© {new Date().getFullYear()} DAKSH_DYNAMICS. ALL_RIGHTS_RESERVED.</p>
-            <div className="flex gap-4 mt-4 md:mt-0">
-              <Link href="https://github.com/dakshdynamics" target="_blank" className="hover:text-white">GITHUB</Link>
-              <Link href="https://linkedin.com/company/dakshdynamics" target="_blank" className="hover:text-white">LINKEDIN</Link>
+        </div>
+      </section>
+
+      {/* ── What We Build ──────────────────────────────────── */}
+      <section className="max-w-7xl mx-auto px-6 py-20 w-full">
+        <div className="text-center mb-12">
+          <p className="section-label mb-2">Two distinct divisions</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">What We Do</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          {/* Solutions Card */}
+          <Link href="/solutions" className="card-blue group block overflow-hidden p-0">
+            <div className="h-56 relative overflow-hidden">
+              <Image
+                src="/illustrations/solutions.jpg"
+                alt="Enterprise AI Systems"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+              />
             </div>
+            <div className="p-7">
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">Enterprise Solutions</h3>
+              <ul className="space-y-2 text-slate-600 text-sm mb-6">
+                {["Multi-Agent AI Systems", "IoT & Edge Robotics", "Custom Hardware Integration", "LangGraph Architectures"].map(item => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="w-4 h-4 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
+                      <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <span className="btn-blue text-sm inline-flex">Explore Deployments →</span>
+            </div>
+          </Link>
+
+          {/* Academy Card */}
+          <Link href="/academy" className="card-purple group block overflow-hidden p-0">
+            <div className="h-56 relative overflow-hidden">
+              <Image
+                src="/illustrations/academy.jpg"
+                alt="Academic Workshops"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="p-7">
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">Academy & FDPs</h3>
+              <ul className="space-y-2 text-slate-600 text-sm mb-6">
+                {["Faculty Development Programs", "Technical Bootcamps", "Institution Workshops", "Hands-on Hardware Labs"].map(item => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="w-4 h-4 rounded-full bg-violet-600 flex items-center justify-center flex-shrink-0">
+                      <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <span className="btn-purple text-sm inline-flex">View Workshop Portfolio →</span>
+            </div>
+          </Link>
+
+        </div>
+      </section>
+
+      {/* ── Stats ──────────────────────────────────────────── */}
+      <section className="bg-white border-y border-slate-200 py-16 px-6">
+        <div className="max-w-4xl mx-auto">
+          <p className="section-label text-center mb-10">Impact at a glance</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+            {[
+              { value: systemsDeployed,    suffix: "",   label: "Systems Deployed",     sub: "Enterprise AI · Robotics · IoT" },
+              { value: workshopsConducted, suffix: "",   label: "Workshops Conducted",  sub: "FDPs · Bootcamps · Intensives" },
+              { value: participantsTrained,suffix: participantsTrained > 0 ? "+" : "", label: "Participants Trained", sub: "Engineers · Researchers · Faculty" },
+            ].map(({ value, suffix, label, sub }) => (
+              <div key={label} className="text-center px-8 py-8">
+                <p className="text-5xl font-extrabold text-slate-900 mb-1">
+                  {value > 0 ? `${value}${suffix}` : "—"}
+                </p>
+                <p className="font-semibold text-slate-700 text-sm mb-1">{label}</p>
+                <p className="text-slate-400 text-xs">{sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Contact CTA ────────────────────────────────────── */}
+      <section className="max-w-7xl mx-auto px-6 py-20 w-full">
+        <div className="card bg-gradient-to-br from-blue-600 to-violet-600 p-10 md:p-14 text-center text-white" style={{border:"none"}}>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to work with us?</h2>
+          <p className="text-blue-100 text-base mb-8 max-w-xl mx-auto">
+            Whether you need a deployed AI system or a workshop for your institution — let&apos;s talk.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link href="/contact?type=enterprise" className="bg-white text-blue-700 font-bold rounded-lg px-6 py-3 text-sm hover:bg-blue-50 transition-colors inline-flex items-center gap-2">
+              Enterprise Inquiry →
+            </Link>
+            <Link href="/contact?type=academy" className="border-2 border-white/60 text-white font-semibold rounded-lg px-6 py-3 text-sm hover:bg-white/10 transition-colors inline-flex items-center gap-2">
+              Book a Workshop
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Footer ─────────────────────────────────────────── */}
+      <footer className="bg-slate-900 text-slate-400 mt-auto">
+        <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+          <p className="text-slate-500">© {new Date().getFullYear()} Daksh Dynamics. All rights reserved.</p>
+          <div className="flex gap-5">
+            <Link href="/solutions" className="hover:text-white transition-colors">Solutions</Link>
+            <Link href="/academy"   className="hover:text-white transition-colors">Academy</Link>
+            <Link href="/contact"   className="hover:text-white transition-colors">Contact</Link>
           </div>
         </div>
       </footer>

@@ -5,6 +5,7 @@ import nodemailer from 'nodemailer';
 import { db } from "@/lib/db";
 import { contactMessages } from "@/lib/db/schema";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function submitContact(formData: FormData) {
   const name    = formData.get("name") as string;
@@ -13,10 +14,12 @@ export async function submitContact(formData: FormData) {
   const type    = formData.get("type") as string;
   const message = formData.get("message") as string;
 
-  // 1. Save to DB
+  // 1. Save to DB — inbox is the primary notification mechanism
   await db.insert(contactMessages).values({ name, email, phone, type, message });
 
-  // 2. Create the SMTP Transporter configured for your Gmail account
+  // 2. EMAIL DISABLED — messages are visible in /admin/inbox.
+  //    To re-enable: uncomment the block below and ensure SMTP env vars are set.
+  /*
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT, // Secure submission port utilizing STARTTLS
@@ -27,7 +30,6 @@ export async function submitContact(formData: FormData) {
     },
   });
 
-  // 3. Send email notification via Gmail Custom SMTP Alias configuration
   await transporter.sendMail({
     // Uses your professional email as the sending mask, backed by your verified alias setup
     from: `"Daksh Dynamics" <hello@akshatcodes.me>`,
@@ -71,8 +73,12 @@ export async function submitContact(formData: FormData) {
       </div>
     `,
   });
+  */
 
-  // 4. Update Next.js Router Cache
+  // 3. Update Next.js Router Cache
   revalidatePath("/admin/inbox");
   revalidatePath("/admin");
+
+  // 4. Redirect with success flag
+  redirect("/contact?sent=1");
 }

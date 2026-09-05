@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { siteMetrics } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function updateMetrics(formData: FormData) {
   const systemsDeployed     = parseInt(formData.get("systemsDeployed") as string)     || 0;
@@ -16,6 +17,6 @@ export async function updateMetrics(formData: FormData) {
     .set({ systemsDeployed, workshopsConducted, participantsTrained, updatedAt: new Date() })
     .where(eq(siteMetrics.id, 1));
 
-  // Immediately bust the home page cache so the new numbers appear
   revalidatePath("/");
+  redirect("/admin/metrics?saved=1");
 }

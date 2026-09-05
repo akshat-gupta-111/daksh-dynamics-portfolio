@@ -3,44 +3,47 @@ import Link from "next/link";
 
 export default function SolutionsFooter() {
   return (
-    <footer className="border-t border-gray-800 bg-black py-16 px-6">
-      <div className="max-w-4xl mx-auto">
+    <footer className="bg-slate-900 text-slate-400 mt-20">
+      <div className="max-w-7xl mx-auto px-6 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
 
-        {/* The Terminal Window — solutions/enterprise-scoped contact only */}
-        <div className="brutalist-box bg-gray-900/50 p-6 shadow-2xl">
-          <div className="flex gap-2 mb-4 border-b border-gray-800 pb-4">
-            <div className="w-3 h-3 bg-gray-700"></div>
-            <div className="w-3 h-3 bg-gray-700"></div>
-            <div className="w-3 h-3 bg-gray-700"></div>
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm">D</div>
+              <span className="font-bold text-white text-base">Daksh Dynamics</span>
+            </div>
+            <p className="text-sm leading-relaxed text-slate-400 max-w-xs">
+              Building autonomous AI systems and training the next generation of engineers.
+            </p>
           </div>
 
-          <div className="font-mono text-sm md:text-base text-gray-400 leading-relaxed">
-            <p className="text-white">root@dakshdynamics:~# ./initiate_contact.sh</p>
-            <p className="mt-2">Initializing secure connection...</p>
-            <p>Select target vector:</p>
-
-            <div className="mt-4 flex flex-col gap-2 pl-4">
-              <Link href="/contact?type=enterprise" className="hover:text-accent transition-colors w-fit">
-                [1] Enterprise_Solutions_Inquiry
-              </Link>
-            </div>
-
-            <div className="mt-6 flex items-center gap-2 text-accent">
-              <span>{">"} Awaiting input</span>
-              <span className="w-2 h-4 bg-accent animate-pulse inline-block"></span>
-            </div>
+          {/* Solutions links */}
+          <div>
+            <h3 className="font-semibold text-white text-sm mb-4">Solutions</h3>
+            <ul className="flex flex-col gap-2 text-sm">
+              <li><Link href="/solutions" className="hover:text-blue-400 transition-colors">Deployed Systems</Link></li>
+              <li><Link href="/team" className="hover:text-blue-400 transition-colors">Engineering Team</Link></li>
+              <li><Link href="/contact?type=enterprise" className="hover:text-blue-400 transition-colors">Enterprise Inquiry</Link></li>
+            </ul>
           </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="font-semibold text-white text-sm mb-4">Contact</h3>
+            <ul className="flex flex-col gap-2 text-sm">
+              <li><a href="mailto:dakshdynamics@gmail.com" className="hover:text-blue-400 transition-colors">dakshdynamics@gmail.com</a></li>
+              <li><a href="tel:+917599739220" className="hover:text-blue-400 transition-colors">+91 7599 739 220</a></li>
+              <li><a href="tel:+919105211531" className="hover:text-blue-400 transition-colors">+91 9105 211 531</a></li>
+            </ul>
+          </div>
+
         </div>
 
-        {/* Copyright & Meta */}
-        <div className="mt-12 flex flex-col md:flex-row items-center justify-between font-mono text-xs text-gray-600">
-          <p>© {new Date().getFullYear()} DAKSH_DYNAMICS. ALL_RIGHTS_RESERVED.</p>
-          <div className="flex gap-4 mt-4 md:mt-0">
-            <Link href="https://github.com/dakshdynamics" target="_blank" className="hover:text-white">GITHUB</Link>
-            <Link href="https://linkedin.com/company/dakshdynamics" target="_blank" className="hover:text-white">LINKEDIN</Link>
-          </div>
+        <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+          <p>© {new Date().getFullYear()} Daksh Dynamics. All rights reserved.</p>
+          <Link href="/" className="hover:text-slate-400 transition-colors">← Back to Home</Link>
         </div>
-
       </div>
     </footer>
   );

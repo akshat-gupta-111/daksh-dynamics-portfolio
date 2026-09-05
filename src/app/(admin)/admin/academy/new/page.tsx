@@ -24,7 +24,7 @@ export default function NewWorkshopPage() {
             name="title"
             required
             placeholder="e.g., Edge AI & IoT Systems FDP"
-            className="brutalist-box px-4 py-3 font-sans text-white focus:outline-none focus:border-accent"
+            className="brutalist-box px-4 py-3 font-sans text-white focus:outline-none focus:border-accent bg-transparent"
           />
         </div>
 
@@ -38,7 +38,7 @@ export default function NewWorkshopPage() {
               name="slug"
               required
               placeholder="e.g., edge-ai-iot-nit-bhopal-jan25"
-              className="brutalist-box px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent"
+              className="brutalist-box px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent bg-transparent"
             />
           </div>
 
@@ -65,17 +65,23 @@ export default function NewWorkshopPage() {
               id="institution"
               name="institution"
               placeholder="e.g., NIT Bhopal"
-              className="brutalist-box px-4 py-3 font-sans text-white focus:outline-none focus:border-accent"
+              className="brutalist-box px-4 py-3 font-sans text-white focus:outline-none focus:border-accent bg-transparent"
             />
           </div>
 
           <div className="flex flex-col gap-2">
             <label htmlFor="conductedAt" className="font-mono text-xs text-gray-400">DATE_CONDUCTED</label>
+            {/*
+              Native date picker on dark bg needs explicit colorscheme.
+              'color-scheme: dark' makes the calendar widget use system dark chrome
+              so the date text is white and clickable.
+            */}
             <input
               type="date"
               id="conductedAt"
               name="conductedAt"
-              className="brutalist-box px-4 py-3 font-mono text-sm text-white bg-black focus:outline-none focus:border-accent"
+              style={{ colorScheme: "dark" }}
+              className="brutalist-box px-4 py-3 font-mono text-sm text-white bg-black focus:outline-none focus:border-accent cursor-pointer"
             />
           </div>
         </div>
@@ -91,7 +97,7 @@ export default function NewWorkshopPage() {
               defaultValue={3}
               min={1}
               max={30}
-              className="brutalist-box px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent"
+              className="brutalist-box px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent bg-transparent"
             />
           </div>
 
@@ -103,7 +109,7 @@ export default function NewWorkshopPage() {
               name="participantCount"
               min={1}
               placeholder="e.g., 87"
-              className="brutalist-box px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent"
+              className="brutalist-box px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent bg-transparent"
             />
           </div>
         </div>
@@ -116,7 +122,7 @@ export default function NewWorkshopPage() {
             id="topicsCovered"
             name="topicsCovered"
             placeholder="e.g., Edge AI, ESP32, LangGraph, Robotics"
-            className="brutalist-box px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent"
+            className="brutalist-box px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent bg-transparent"
           />
         </div>
 
@@ -131,7 +137,7 @@ export default function NewWorkshopPage() {
             maxLength={500}
             rows={3}
             placeholder="Quote from HOD / faculty coordinator..."
-            className="brutalist-box px-4 py-3 font-sans text-white focus:outline-none focus:border-accent resize-none"
+            className="brutalist-box px-4 py-3 font-sans text-white focus:outline-none focus:border-accent resize-none bg-transparent"
           />
         </div>
 

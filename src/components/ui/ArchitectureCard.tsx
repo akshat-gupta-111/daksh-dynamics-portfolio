@@ -1,6 +1,6 @@
 // filepath: src/components/ui/ArchitectureCard.tsx
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ArchitectureCardProps {
   title: string;
@@ -10,49 +10,65 @@ interface ArchitectureCardProps {
   heroAssetUrl?: string | null;
 }
 
-export default function ArchitectureCard({ title, abstract, tags, href, heroAssetUrl }: ArchitectureCardProps) {
+export default function ArchitectureCard({
+  title,
+  abstract,
+  tags,
+  href,
+  heroAssetUrl,
+}: ArchitectureCardProps) {
   return (
-    <Link 
-      href={href}
-      className="group flex flex-col h-full brutalist-box relative overflow-hidden"
-    >
-      {/* Schematic / Image Container */}
-      <div className="h-48 w-full border-b border-gray-800 bg-gray-950 flex items-center justify-center relative overflow-hidden">
+    <Link href={href} className="card group block overflow-hidden">
+
+      {/* Cover image */}
+      <div className="h-44 w-full bg-blue-50 flex items-center justify-center relative overflow-hidden">
         {heroAssetUrl ? (
-          <Image 
-            src={heroAssetUrl} 
-            alt={title} 
-            fill 
+          <Image
+            src={heroAssetUrl}
+            alt={title}
+            fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
         ) : (
-          <div className="w-full h-full bg-[linear-gradient(rgba(34,34,34,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(34,34,34,0.3)_1px,transparent_1px)] bg-[size:16px_16px] flex items-center justify-center">
-            <span className="font-mono text-xs text-gray-500 group-hover:text-accent transition-colors duration-150">
-              {'<IMAGE_ASSET_NOT_FOUND />'}
-            </span>
+          <div className="w-full h-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+            {/* Circuit-board placeholder SVG */}
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" className="opacity-30">
+              <rect x="20" y="20" width="24" height="24" rx="3" stroke="#2563EB" strokeWidth="2"/>
+              <circle cx="32" cy="32" r="6" stroke="#2563EB" strokeWidth="2"/>
+              <line x1="32" y1="4" x2="32" y2="20" stroke="#2563EB" strokeWidth="1.5"/>
+              <line x1="32" y1="44" x2="32" y2="60" stroke="#2563EB" strokeWidth="1.5"/>
+              <line x1="4" y1="32" x2="20" y2="32" stroke="#2563EB" strokeWidth="1.5"/>
+              <line x1="44" y1="32" x2="60" y2="32" stroke="#2563EB" strokeWidth="1.5"/>
+              <circle cx="32" cy="4" r="3" fill="#2563EB" fillOpacity=".4"/>
+              <circle cx="32" cy="60" r="3" fill="#2563EB" fillOpacity=".4"/>
+              <circle cx="4" cy="32" r="3" fill="#2563EB" fillOpacity=".4"/>
+              <circle cx="60" cy="32" r="3" fill="#2563EB" fillOpacity=".4"/>
+            </svg>
           </div>
         )}
-        
-        <div className="absolute top-2 right-2 w-2 h-2 bg-gray-800 group-hover:bg-accent transition-colors duration-150 z-10" />
+        {/* Blue hover overlay */}
+        <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/5 transition-colors duration-200" />
       </div>
 
-      {/* The Metadata Payload */}
-      <div className="p-6 flex flex-col flex-1">
-        <h3 className="text-xl font-bold tracking-wide mb-3">{title}</h3>
-        <p className="text-gray-400 font-mono text-sm leading-relaxed mb-6 flex-1">
-          {abstract}
-        </p>
+      {/* Content */}
+      <div className="p-5">
+        <h2 className="font-bold text-slate-900 text-base mb-2 group-hover:text-blue-600 transition-colors leading-snug">
+          {title}
+        </h2>
+        <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">{abstract}</p>
 
-        {/* Tech Stack Array Rendering */}
-        <div className="flex flex-wrap gap-2 mt-auto">
-          {tags.map((tag) => (
-            <span 
-              key={tag} 
-              className="px-2 py-1 bg-gray-900 border border-gray-800 font-mono text-[10px] uppercase text-gray-400 group-hover:border-gray-600 transition-colors"
-            >
-              [{tag}]
-            </span>
+        {/* Tech tags */}
+        <div className="flex flex-wrap gap-1.5">
+          {tags.slice(0, 4).map((tag) => (
+            <span key={tag} className="badge-blue text-xs">{tag}</span>
           ))}
+          {tags.length > 4 && (
+            <span className="badge-gray text-xs">+{tags.length - 4}</span>
+          )}
+        </div>
+
+        <div className="mt-4 text-blue-600 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          View Details →
         </div>
       </div>
     </Link>

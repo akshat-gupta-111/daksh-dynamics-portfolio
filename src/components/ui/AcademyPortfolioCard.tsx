@@ -14,28 +14,18 @@ interface AcademyPortfolioCardProps {
 }
 
 export default function AcademyPortfolioCard({
-  title,
-  type,
-  durationDays,
-  institution,
-  conductedAt,
-  participantCount,
-  coverImageUrl,
-  topicsCovered,
-  testimonial,
+  title, type, durationDays, institution, conductedAt,
+  participantCount, coverImageUrl, topicsCovered, testimonial,
 }: AcademyPortfolioCardProps) {
   const formattedDate = conductedAt
-    ? new Date(conductedAt).toLocaleDateString("en-IN", {
-        month: "short",
-        year: "numeric",
-      })
+    ? new Date(conductedAt).toLocaleDateString("en-IN", { month: "short", year: "numeric" })
     : null;
 
   return (
-    <div className="brutalist-box flex flex-col h-full overflow-hidden group">
+    <div className="card group overflow-hidden flex flex-col h-full">
 
-      {/* Cover Image / Fallback */}
-      <div className="h-48 w-full border-b border-gray-800 bg-gray-950 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+      {/* Cover image */}
+      <div className="h-44 w-full bg-violet-50 flex items-center justify-center relative overflow-hidden flex-shrink-0">
         {coverImageUrl ? (
           <Image
             src={coverImageUrl}
@@ -44,69 +34,66 @@ export default function AcademyPortfolioCard({
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
         ) : (
-          <div className="w-full h-full bg-[linear-gradient(rgba(34,34,34,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(34,34,34,0.3)_1px,transparent_1px)] bg-[size:16px_16px] flex items-center justify-center">
-            <span className="font-mono text-xs text-gray-500 group-hover:text-accent transition-colors duration-150">
-              {"<IMAGE_ASSET_NOT_FOUND />"}
-            </span>
+          <div className="w-full h-full bg-gradient-to-br from-violet-50 to-purple-100 flex items-center justify-center">
+            {/* Workshop placeholder SVG */}
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" className="opacity-30">
+              <rect x="8" y="12" width="38" height="26" rx="2" stroke="#7C3AED" strokeWidth="2"/>
+              <line x1="27" y1="38" x2="27" y2="48" stroke="#7C3AED" strokeWidth="2"/>
+              <line x1="18" y1="48" x2="36" y2="48" stroke="#7C3AED" strokeWidth="2"/>
+              <circle cx="50" cy="18" r="8" stroke="#7C3AED" strokeWidth="2"/>
+              <line x1="50" y1="14" x2="50" y2="22" stroke="#7C3AED" strokeWidth="1.5"/>
+              <line x1="46" y1="18" x2="54" y2="18" stroke="#7C3AED" strokeWidth="1.5"/>
+              <circle cx="46" cy="52" r="4" stroke="#7C3AED" strokeWidth="1.5"/>
+              <circle cx="56" cy="52" r="4" stroke="#7C3AED" strokeWidth="1.5"/>
+            </svg>
           </div>
         )}
-        {/* Status dot */}
-        <div className="absolute top-2 right-2 w-2 h-2 bg-gray-800 group-hover:bg-accent transition-colors duration-150 z-10" />
+        {/* Type badge overlay */}
+        <div className="absolute top-3 left-3">
+          <span className="badge-purple text-xs font-semibold">{type}</span>
+        </div>
       </div>
 
-      {/* Card Body */}
-      <div className="p-6 flex flex-col flex-1">
+      {/* Content */}
+      <div className="p-5 flex flex-col flex-1">
+        <h2 className="font-bold text-slate-900 text-base mb-1.5 leading-snug">{title}</h2>
 
-        {/* Type badge + duration */}
-        <div className="flex justify-between items-center mb-4">
-          <span className="px-2 py-1 bg-gray-900 border border-gray-800 font-mono text-xs text-accent">
-            [{type}]
+        {/* Institution + date */}
+        {(institution || formattedDate) && (
+          <p className="text-sm text-slate-500 mb-2">
+            {institution && <span className="font-medium text-slate-700">{institution}</span>}
+            {institution && formattedDate && " · "}
+            {formattedDate}
+          </p>
+        )}
+
+        {/* Duration + participants */}
+        <div className="flex gap-3 mb-4 text-xs font-medium text-slate-500">
+          <span className="flex items-center gap-1">
+            <span className="text-violet-500">◷</span> {durationDays} day{durationDays !== 1 ? "s" : ""}
           </span>
-          <span className="font-mono text-xs text-gray-500">
-            {durationDays} DAY{durationDays !== 1 ? "S" : ""} INTENSIVE
-          </span>
+          {participantCount != null && participantCount > 0 && (
+            <span className="flex items-center gap-1">
+              <span className="text-violet-500">▸</span> {participantCount} participants
+            </span>
+          )}
         </div>
 
-        {/* Title */}
-        <h2 className="text-xl font-bold tracking-wide mb-3 leading-snug">{title}</h2>
-
-        {/* Institution + Date */}
-        {(institution || formattedDate) && (
-          <p className="font-mono text-xs text-gray-400 mb-3">
-            {institution && <span className="text-white">{institution}</span>}
-            {institution && formattedDate && <span className="text-gray-600"> · </span>}
-            {formattedDate && <span>{formattedDate}</span>}
-          </p>
-        )}
-
-        {/* Participant count */}
-        {participantCount != null && participantCount > 0 && (
-          <p className="font-mono text-xs text-accent mb-4">
-            ▸ {participantCount} PARTICIPANTS TRAINED
-          </p>
-        )}
-
-        {/* Topics covered tags */}
+        {/* Topics */}
         {topicsCovered && topicsCovered.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-auto mb-4">
-            {topicsCovered.map((topic) => (
-              <span
-                key={topic}
-                className="px-2 py-1 bg-gray-900 border border-gray-800 font-mono text-[10px] uppercase text-gray-400 group-hover:border-gray-600 transition-colors"
-              >
-                [{topic}]
-              </span>
+          <div className="flex flex-wrap gap-1.5 mb-4 mt-auto">
+            {topicsCovered.slice(0, 5).map((t) => (
+              <span key={t} className="badge-purple text-xs">{t}</span>
             ))}
           </div>
         )}
 
         {/* Testimonial */}
         {testimonial && (
-          <blockquote className="mt-auto border-l-2 border-gray-700 pl-4 font-mono text-xs text-gray-500 italic leading-relaxed">
+          <blockquote className="text-xs text-slate-500 italic border-l-2 border-violet-300 pl-3 leading-relaxed mt-auto">
             &ldquo;{testimonial}&rdquo;
           </blockquote>
         )}
-
       </div>
     </div>
   );

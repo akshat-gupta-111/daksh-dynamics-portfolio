@@ -3,31 +3,33 @@ import Link from "next/link";
 
 export default function AcademyNavbar() {
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/90 backdrop-blur-sm">
+    <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-sm">
       <div className="flex h-16 items-center justify-between px-6 max-w-7xl mx-auto">
 
-        {/* Left: Branding — clicking logo returns to the bifurcation home */}
-        <div className="font-sans font-bold tracking-widest text-lg">
-          <Link href="/" className="hover:text-accent transition-colors">
-            DAKSH_DYNAMICS
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-bold text-sm group-hover:bg-violet-700 transition-colors">
+            D
+          </div>
+          <span className="font-bold text-slate-900 text-base tracking-tight">
+            Daksh Dynamics
+          </span>
+        </Link>
+
+        {/* Nav Links — Academy scoped, no /team (solutions audience) */}
+        <div className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+          <Link href="/academy" className="hover:text-violet-600 transition-colors">
+            Academy
+          </Link>
+          <Link href="/contact?type=academy" className="hover:text-violet-600 transition-colors">
+            Contact
           </Link>
         </div>
 
-        {/* Center/Right: Academy-scoped links only */}
-        <div className="hidden md:flex gap-8 font-mono text-sm text-gray-400">
-          <Link href="/academy" className="hover:text-accent transition-colors">
-            [ACADEMY]
-          </Link>
-          <Link href="/team" className="hover:text-accent transition-colors">
-            [TEAM]
-          </Link>
-        </div>
-
-        {/* Far Right: System Status */}
-        <div className="flex items-center gap-3 font-mono text-xs text-gray-400">
-          <span className="hidden sm:inline">STATUS: OPERATIONAL</span>
-          <div className="h-2 w-2 bg-accent animate-pulse shadow-[0_0_8px_#00E5FF]"></div>
-        </div>
+        {/* CTA */}
+        <Link href="/contact?type=academy" className="btn-purple text-sm hidden md:inline-flex">
+          Book a Workshop →
+        </Link>
 
       </div>
     </nav>
