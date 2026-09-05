@@ -1,5 +1,6 @@
 // filepath: src/app/(public)/contact/page.tsx
 import Link from "next/link";
+import Image from "next/image";
 import { submitContact } from "./actions";
 import OrbBackground from "@/components/ui/OrbBackground";
 
@@ -16,10 +17,17 @@ export default async function ContactPage({ searchParams }: PageProps) {
       <div className="flex flex-col min-h-screen">
         <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-sm">
           <div className="flex h-16 items-center justify-between px-6 max-w-7xl mx-auto">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm">D</div>
+            <Link href="/" className="flex items-center gap-2.5">
+              <Image src="/logo.png" alt="Daksh Dynamics" width={40} height={40} className="w-10 h-10 object-contain" />
               <span className="font-bold text-slate-900 text-base tracking-tight">Daksh Dynamics</span>
             </Link>
+            <div className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+              <Link href="/solutions" className="hover:text-blue-600 transition-colors">Solutions</Link>
+              <Link href="/academy"   className="hover:text-violet-600 transition-colors">Academy</Link>
+              <Link href="/team"      className="hover:text-slate-900 transition-colors">Team</Link>
+              <Link href="/contact"   className="hover:text-slate-900 transition-colors">Contact</Link>
+            </div>
+            <Link href="/" className="btn-blue text-sm hidden md:inline-flex">← Home</Link>
           </div>
         </nav>
         <main className="flex-1 flex items-center justify-center px-6 py-20">
@@ -46,11 +54,17 @@ export default async function ContactPage({ searchParams }: PageProps) {
       {/* Navbar */}
       <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-sm">
         <div className="flex h-16 items-center justify-between px-6 max-w-7xl mx-auto">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm">D</div>
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image src="/logo.png" alt="Daksh Dynamics" width={40} height={40} className="w-10 h-10 object-contain" />
             <span className="font-bold text-slate-900 text-base tracking-tight">Daksh Dynamics</span>
           </Link>
-          <Link href="/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">← Back to Home</Link>
+          <div className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+            <Link href="/solutions" className="hover:text-blue-600 transition-colors">Solutions</Link>
+            <Link href="/academy"   className="hover:text-violet-600 transition-colors">Academy</Link>
+            <Link href="/team"      className="hover:text-slate-900 transition-colors">Team</Link>
+            <Link href="/contact"   className="hover:text-slate-900 transition-colors">Contact</Link>
+          </div>
+          <Link href="/contact" className="btn-blue text-sm hidden md:inline-flex">Get in Touch →</Link>
         </div>
       </nav>
 

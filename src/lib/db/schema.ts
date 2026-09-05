@@ -20,6 +20,7 @@ export const academyWorkshops = pgTable("academy_workshops", {
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   title: varchar("title", { length: 255 }).notNull(),
   type: varchar("type", { length: 50 }).notNull(),
+  description: text("description"),                           // NEW: rich summary shown on slug page
   durationDays: integer("duration_days").notNull().default(1),
   institution: varchar("institution", { length: 255 }),
   conductedAt: timestamp("conducted_at"),
@@ -34,11 +35,14 @@ export const academyWorkshops = pgTable("academy_workshops", {
 // TABLE 3: Team Members (Engineering Roster)
 export const teamMembers = pgTable("team_members", {
   id: serial("id").primaryKey(),
+  slug: varchar("slug", { length: 255 }).unique(),             // NEW: for /team/[slug] detail page
   name: varchar("name", { length: 255 }).notNull(),
   role: varchar("role", { length: 255 }).notNull(),
   bio: varchar("bio", { length: 500 }).notNull(),
   techStack: text("tech_stack").array().notNull(),
   photoUrl: text("photo_url"),
+  githubUrl: text("github_url"),                               // NEW
+  linkedinUrl: text("linkedin_url"),                           // NEW
   displayOrder: integer("display_order").default(99).notNull(),
   isPublished: boolean("is_published").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -62,5 +66,15 @@ export const contactMessages = pgTable("contact_messages", {
   type: varchar("type", { length: 20 }).notNull(), // 'enterprise' | 'academy'
   message: text("message").notNull(),
   isRead: boolean("is_read").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// TABLE 6: Site Brochures (Downloadable assets linked from home page cards)
+export const siteBrochures = pgTable("site_brochures", {
+  id: serial("id").primaryKey(),
+  type: varchar("type", { length: 20 }).notNull(), // 'solutions' | 'academy'
+  title: varchar("title", { length: 255 }).notNull(),
+  fileUrl: text("file_url").notNull(),
+  isPublished: boolean("is_published").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

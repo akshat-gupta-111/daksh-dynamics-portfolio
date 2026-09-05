@@ -1,32 +1,33 @@
 // filepath: src/components/layout/SolutionsNavbar.tsx
+// Standardized navbar — all 4 public links present on every page.
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SolutionsNavbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-sm">
       <div className="flex h-16 items-center justify-between px-6 max-w-7xl mx-auto">
 
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm group-hover:bg-blue-700 transition-colors">
-            D
-          </div>
+        {/* Logo — 40px for comfortable visibility */}
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <Image
+            src="/logo.png"
+            alt="Daksh Dynamics"
+            width={40}
+            height={40}
+            className="w-10 h-10 object-contain"
+          />
           <span className="font-bold text-slate-900 text-base tracking-tight">
             Daksh Dynamics
           </span>
         </Link>
 
-        {/* Nav Links */}
+        {/* Nav Links — all 4 present on every page */}
         <div className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
-          <Link href="/solutions" className="hover:text-blue-600 transition-colors">
-            Solutions
-          </Link>
-          <Link href="/team" className="hover:text-blue-600 transition-colors">
-            Team
-          </Link>
-          <Link href="/contact?type=enterprise" className="hover:text-blue-600 transition-colors">
-            Contact
-          </Link>
+          <Link href="/solutions" className="hover:text-blue-600 transition-colors">Solutions</Link>
+          <Link href="/academy"   className="hover:text-violet-600 transition-colors">Academy</Link>
+          <Link href="/team"      className="hover:text-slate-900 transition-colors">Team</Link>
+          <Link href="/contact"   className="hover:text-slate-900 transition-colors">Contact</Link>
         </div>
 
         {/* CTA */}

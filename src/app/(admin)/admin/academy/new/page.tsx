@@ -56,6 +56,20 @@ export default function NewWorkshopPage() {
           </div>
         </div>
 
+        {/* Description */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="description" className="font-mono text-xs text-gray-400">
+            DESCRIPTION <span className="text-gray-600">(shown on workshop detail page)</span>
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            rows={4}
+            placeholder="Describe what the workshop covered, key outcomes, hands-on activities..."
+            className="brutalist-box px-4 py-3 font-sans text-white focus:outline-none focus:border-accent resize-none bg-transparent"
+          />
+        </div>
+
         {/* Institution & Date */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-2">

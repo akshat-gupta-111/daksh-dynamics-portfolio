@@ -9,16 +9,21 @@ import { redirect } from "next/navigation";
 
 export async function createTeamMember(formData: FormData) {
   const name         = formData.get("name") as string;
+  const slug         = (formData.get("slug") as string) || null;
   const role         = formData.get("role") as string;
   const bio          = formData.get("bio") as string;
   const techRaw      = formData.get("techStack") as string;
   const photoUrl     = (formData.get("photoUrl") as string) || null;
+  const githubUrl    = (formData.get("githubUrl") as string) || null;
+  const linkedinUrl  = (formData.get("linkedinUrl") as string) || null;
   const displayOrder = parseInt(formData.get("displayOrder") as string) || 99;
   const isPublished  = formData.get("isPublished") === "on";
 
   const techStack = techRaw.split(",").map((t) => t.trim().toUpperCase()).filter(Boolean);
 
-  await db.insert(teamMembers).values({ name, role, bio, techStack, photoUrl, displayOrder, isPublished });
+  await db.insert(teamMembers).values({
+    name, slug, role, bio, techStack, photoUrl, githubUrl, linkedinUrl, displayOrder, isPublished,
+  });
 
   revalidatePath("/team");
   redirect("/admin/roster");

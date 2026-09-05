@@ -46,6 +46,9 @@ export default async function TeamPage() {
               techStack={member.techStack}
               photoUrl={member.photoUrl}
               displayOrder={member.displayOrder}
+              slug={member.slug}
+              githubUrl={member.githubUrl}
+              linkedinUrl={member.linkedinUrl}
             />
           ))}
         </div>

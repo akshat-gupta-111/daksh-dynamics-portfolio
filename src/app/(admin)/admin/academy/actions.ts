@@ -11,6 +11,7 @@ export async function createWorkshop(formData: FormData) {
   const title          = formData.get("title") as string;
   const slug           = formData.get("slug") as string;
   const type           = formData.get("type") as string;
+  const description    = (formData.get("description") as string) || null;
   const durationDays   = parseInt(formData.get("durationDays") as string) || 1;
   const isPublished    = formData.get("isPublished") === "on";
   const institution    = (formData.get("institution") as string) || null;
@@ -26,7 +27,7 @@ export async function createWorkshop(formData: FormData) {
   const testimonial    = (formData.get("testimonial") as string) || null;
 
   await db.insert(academyWorkshops).values({
-    title, slug, type, durationDays, institution, conductedAt,
+    title, slug, type, description, durationDays, institution, conductedAt,
     participantCount, coverImageUrl, topicsCovered, testimonial, isPublished,
   });
 

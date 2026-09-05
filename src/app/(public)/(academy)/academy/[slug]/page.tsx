@@ -77,6 +77,13 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
         </div>
       </div>
 
+      {/* Description */}
+      {workshop.description && (
+        <div className="mb-10">
+          <p className="text-slate-600 text-base leading-relaxed">{workshop.description}</p>
+        </div>
+      )}
+
       {/* Cover Image */}
       {workshop.coverImageUrl && (
         <div className="relative h-80 w-full rounded-2xl overflow-hidden mb-12 shadow-md">

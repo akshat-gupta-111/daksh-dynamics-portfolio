@@ -51,6 +51,7 @@ export default async function CommandCenter() {
           { href: "/admin/metrics",         title: "Update Site Metrics",   desc: "Edit OPERATIONAL_TELEMETRY numbers." },
           { href: "/admin/inbox",           title: "View Inbox",            desc: `${unreadCount} unread message${unreadCount !== 1 ? "s" : ""}.` },
           { href: "/admin/deployments",     title: "Manage Deployments",    desc: "Publish, unpublish, or delete records." },
+          { href: "/admin/brochures",       title: "Manage Brochures",      desc: "Upload downloadable files for home page cards." },
         ].map((action) => (
           <Link
             key={action.href}

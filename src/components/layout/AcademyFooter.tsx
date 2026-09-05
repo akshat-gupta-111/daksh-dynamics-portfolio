@@ -1,5 +1,6 @@
 // filepath: src/components/layout/AcademyFooter.tsx
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AcademyFooter() {
   return (
@@ -9,21 +10,23 @@ export default function AcademyFooter() {
 
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-bold text-sm">D</div>
+            <Link href="/" className="flex items-center gap-3 mb-3">
+              <Image src="/logo.png" alt="Daksh Dynamics" width={40} height={40} className="w-10 h-10 object-contain" />
               <span className="font-bold text-white text-base">Daksh Dynamics</span>
-            </div>
+            </Link>
             <p className="text-sm leading-relaxed text-slate-400 max-w-xs">
               Rigorous FDPs and technical workshops backed by production-level engineering expertise.
             </p>
           </div>
 
-          {/* Academy links */}
+          {/* Links */}
           <div>
-            <h3 className="font-semibold text-white text-sm mb-4">Academy</h3>
+            <h3 className="font-semibold text-white text-sm mb-4">Navigate</h3>
             <ul className="flex flex-col gap-2 text-sm">
-              <li><Link href="/academy" className="hover:text-violet-400 transition-colors">Workshop Portfolio</Link></li>
-              <li><Link href="/contact?type=academy" className="hover:text-violet-400 transition-colors">Book a Workshop</Link></li>
+              <li><Link href="/solutions" className="hover:text-violet-400 transition-colors">Deployed Systems</Link></li>
+              <li><Link href="/academy"   className="hover:text-violet-400 transition-colors">Academy & FDPs</Link></li>
+              <li><Link href="/team"      className="hover:text-violet-400 transition-colors">Engineering Team</Link></li>
+              <li><Link href="/contact"   className="hover:text-violet-400 transition-colors">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -32,8 +35,9 @@ export default function AcademyFooter() {
             <h3 className="font-semibold text-white text-sm mb-4">Contact</h3>
             <ul className="flex flex-col gap-2 text-sm">
               <li><a href="mailto:dakshdynamics@gmail.com" className="hover:text-violet-400 transition-colors">dakshdynamics@gmail.com</a></li>
-              <li><a href="mailto:hello@akshatcodes.me" className="hover:text-violet-400 transition-colors">hello@akshatcodes.me</a></li>
-              <li><a href="tel:+917599739220" className="hover:text-violet-400 transition-colors">+91 7599 739 220</a></li>
+              <li><a href="mailto:hello@akshatcodes.me"    className="hover:text-violet-400 transition-colors">hello@akshatcodes.me</a></li>
+              <li><a href="tel:+917599739220"              className="hover:text-violet-400 transition-colors">+91 7599 739 220</a></li>
+              <li><a href="tel:+919105211531"              className="hover:text-violet-400 transition-colors">+91 9105 211 531</a></li>
             </ul>
           </div>
 
