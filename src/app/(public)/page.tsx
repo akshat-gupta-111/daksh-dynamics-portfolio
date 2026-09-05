@@ -5,6 +5,7 @@ import Image from "next/image";
 import { db } from "@/lib/db";
 import { siteMetrics, siteBrochures } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import MobileNavigation from "@/components/layout/MobileNavigation";
 
 export default async function HomePage() {
   const [metrics] = await db.select().from(siteMetrics).limit(1);
@@ -22,7 +23,7 @@ export default async function HomePage() {
 
       {/* ── Navbar ─────────────────────────────────────────── */}
       <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-sm">
-        <div className="flex h-16 items-center justify-between px-6 max-w-7xl mx-auto">
+        <div className="relative flex h-16 items-center justify-between px-4 sm:px-6 max-w-7xl mx-auto">
           <Link href="/" className="flex items-center gap-2.5">
             <Image src="/logo.png" alt="Daksh Dynamics" width={40} height={40} className="w-10 h-10 object-contain" />
             <span className="font-bold text-slate-900 text-base tracking-tight">Daksh Dynamics</span>
@@ -35,6 +36,7 @@ export default async function HomePage() {
             <Link href="/contact"   className="hover:text-slate-900 transition-colors">Contact</Link>
           </div>
           <Link href="/contact" className="btn-blue text-sm hidden md:inline-flex">Get in Touch →</Link>
+          <MobileNavigation ctaHref="/contact" ctaLabel="Get in Touch →" />
         </div>
       </nav>
 

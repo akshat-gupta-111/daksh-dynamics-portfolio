@@ -2,11 +2,12 @@
 // Standardized navbar — all 4 public links present on every page.
 import Link from "next/link";
 import Image from "next/image";
+import MobileNavigation from "@/components/layout/MobileNavigation";
 
 export default function SolutionsNavbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-sm">
-      <div className="flex h-16 items-center justify-between px-6 max-w-7xl mx-auto">
+      <div className="relative flex h-16 items-center justify-between px-4 sm:px-6 max-w-7xl mx-auto">
 
         {/* Logo — 40px for comfortable visibility */}
         <Link href="/" className="flex items-center gap-2.5 group">
@@ -35,6 +36,7 @@ export default function SolutionsNavbar() {
         <Link href="/contact?type=enterprise" className="btn-blue text-sm hidden md:inline-flex">
           Get in Touch →
         </Link>
+        <MobileNavigation ctaHref="/contact?type=enterprise" ctaLabel="Get in Touch →" />
 
       </div>
     </nav>
