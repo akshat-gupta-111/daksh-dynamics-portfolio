@@ -267,8 +267,29 @@
   66%       { transform: translate(16px, -14px) scale(0.94); }
 }
 
+@keyframes loader-jiggle {
+  0%, 100% { transform: translateY(3px) scale(0.94, 1.06); }
+  45%      { transform: translateY(-15px) scale(1.06, 0.94); }
+  70%      { transform: translateY(-5px) scale(0.98, 1.02); }
+}
+
 .animate-blob       { animation: blob-float      9s ease-in-out infinite; }
 .animate-blob-slow  { animation: blob-float-slow 13s ease-in-out infinite; }
 .animation-delay-2  { animation-delay: 2s; }
 .animation-delay-4  { animation-delay: 4s; }
 .animation-delay-6  { animation-delay: 6s; }
+
+.loader-ball {
+  animation: loader-jiggle 720ms cubic-bezier(.45, 0, .55, 1) infinite;
+  will-change: transform;
+}
+
+.loader-ball--delayed {
+  animation-delay: -360ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-ball {
+    animation: none;
+  }
+}
