@@ -24,6 +24,7 @@ export default function SolutionsNavbar() {
 
         {/* Nav Links — all 4 present on every page */}
         <div className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+          <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
           <Link href="/solutions" className="hover:text-blue-600 transition-colors">Solutions</Link>
           <Link href="/academy"   className="hover:text-violet-600 transition-colors">Academy</Link>
           <Link href="/team"      className="hover:text-slate-900 transition-colors">Team</Link>
