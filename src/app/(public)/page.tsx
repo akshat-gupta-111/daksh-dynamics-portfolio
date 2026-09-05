@@ -1,5 +1,6 @@
 // filepath: src/app/(public)/page.tsx
 import Link from "next/link";
+import OrbBackground from "@/components/ui/OrbBackground";
 import Image from "next/image";
 import { db } from "@/lib/db";
 import { siteMetrics } from "@/lib/db/schema";
@@ -31,8 +32,12 @@ export default async function HomePage() {
       </nav>
 
       {/* ── Hero ───────────────────────────────────────────── */}
-      <section className="bg-gradient-to-b from-slate-50 via-blue-50/40 to-[var(--color-bg)] pt-20 pb-24 px-6 text-center">
-        <div className="max-w-4xl mx-auto">
+      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-violet-50 pt-20 pb-28 px-6 text-center">
+
+        <OrbBackground variant="mixed" />
+
+        {/* ── Hero content ── */}
+        <div className="relative z-10 max-w-4xl mx-auto">
           <span className="badge-blue mb-5 inline-block">Based in India · Deployed Globally</span>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.08] mb-6">
             We build{" "}
@@ -51,6 +56,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
 
       {/* ── What We Build ──────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-6 py-20 w-full">

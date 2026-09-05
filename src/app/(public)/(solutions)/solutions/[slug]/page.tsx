@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import OrbBackground from "@/components/ui/OrbBackground";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -34,14 +35,17 @@ export default async function SolutionDetailPage({ params }: PageProps) {
         ← Back to Deployed Systems
       </Link>
 
-      {/* Header */}
-      <div className="border-b border-slate-200 pb-8 mb-10">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4 leading-tight">
-          {project.title}
-        </h1>
-        <p className="text-slate-600 text-base leading-relaxed">
-          {project.abstract}
-        </p>
+      {/* Header banner with orbs */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-sky-50 border border-blue-100 px-8 py-12 mb-10">
+        <OrbBackground variant="blue" />
+        <div className="relative z-10">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4 leading-tight">
+            {project.title}
+          </h1>
+          <p className="text-slate-600 text-base leading-relaxed max-w-2xl">
+            {project.abstract}
+          </p>
+        </div>
       </div>
 
       {/* Hero Image */}

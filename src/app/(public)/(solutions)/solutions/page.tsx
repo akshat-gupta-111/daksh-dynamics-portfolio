@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { solutionsProjects } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import ArchitectureCard from "@/components/ui/ArchitectureCard";
+import OrbBackground from "@/components/ui/OrbBackground";
 
 export default async function SolutionsPage() {
   const projects = await db
@@ -15,15 +16,18 @@ export default async function SolutionsPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
 
-      {/* Header */}
-      <div className="border-b border-slate-200 pb-10 mb-14">
-        <p className="section-label mb-2">Production deployments</p>
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
-          Deployed Systems
-        </h1>
-        <p className="text-slate-500 text-base max-w-2xl leading-relaxed">
-          Enterprise-grade AI systems, edge robotics, and multi-agent architectures — built and shipped by the Daksh Dynamics engineering team.
-        </p>
+      {/* Header with orbs */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-sky-50 border border-blue-100 px-10 py-14 mb-14">
+        <OrbBackground variant="blue" />
+        <div className="relative z-10">
+          <p className="section-label mb-2">Production deployments</p>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
+            Deployed Systems
+          </h1>
+          <p className="text-slate-600 text-base max-w-2xl leading-relaxed">
+            Enterprise-grade AI systems, edge robotics, and multi-agent architectures — built and shipped by the Daksh Dynamics engineering team.
+          </p>
+        </div>
       </div>
 
       {/* Projects Grid */}

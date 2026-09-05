@@ -1,6 +1,7 @@
 // filepath: src/app/(public)/contact/page.tsx
 import Link from "next/link";
 import { submitContact } from "./actions";
+import OrbBackground from "@/components/ui/OrbBackground";
 
 interface PageProps {
   searchParams: Promise<{ type?: string; sent?: string }>;
@@ -55,13 +56,16 @@ export default async function ContactPage({ searchParams }: PageProps) {
 
       <main className="flex-1 max-w-7xl mx-auto px-6 py-16 w-full">
 
-        {/* Header */}
-        <div className="text-center mb-14">
-          <p className="section-label mb-2">We&apos;d love to hear from you</p>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">Get in Touch</h1>
-          <p className="text-slate-500 max-w-xl mx-auto">
-            Tell us what you&apos;re building or what your institution needs — we&apos;ll respond within 24 hours.
-          </p>
+        {/* Header with orbs */}
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 via-white to-violet-50 border border-slate-200 px-10 py-14 text-center mb-14">
+          <OrbBackground variant="mixed" />
+          <div className="relative z-10">
+            <p className="section-label mb-2">We&apos;d love to hear from you</p>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">Get in Touch</h1>
+            <p className="text-slate-600 max-w-xl mx-auto">
+              Tell us what you&apos;re building or what your institution needs — we&apos;ll respond within 24 hours.
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">

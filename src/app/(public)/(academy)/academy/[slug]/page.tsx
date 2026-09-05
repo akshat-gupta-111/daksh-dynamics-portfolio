@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import OrbBackground from "@/components/ui/OrbBackground";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -42,36 +43,38 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
         ← Back to Academy Portfolio
       </Link>
 
-      {/* Type badge */}
-      <div className="mb-4">
-        <span className="badge-purple">{workshop.type}</span>
-      </div>
-
-      {/* Title */}
-      <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4 leading-tight">
-        {workshop.title}
-      </h1>
-
-      {/* Meta row */}
-      <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-10 pb-8 border-b border-slate-200">
-        {workshop.institution && (
-          <span className="flex items-center gap-1.5 font-medium text-slate-700">
-            <span className="text-violet-500">🏛</span> {workshop.institution}
-          </span>
-        )}
-        {formattedDate && (
-          <span className="flex items-center gap-1.5">
-            <span className="text-violet-500">📅</span> {formattedDate}
-          </span>
-        )}
-        <span className="flex items-center gap-1.5">
-          <span className="text-violet-500">◷</span> {workshop.durationDays} day{workshop.durationDays !== 1 ? "s" : ""}
-        </span>
-        {workshop.participantCount != null && workshop.participantCount > 0 && (
-          <span className="flex items-center gap-1.5">
-            <span className="text-violet-500">👥</span> {workshop.participantCount} participants
-          </span>
-        )}
+      {/* Header banner with orbs */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-violet-50 to-purple-50 border border-violet-100 px-8 py-12 mb-10">
+        <OrbBackground variant="purple" />
+        <div className="relative z-10">
+          <div className="mb-4">
+            <span className="badge-purple">{workshop.type}</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4 leading-tight">
+            {workshop.title}
+          </h1>
+          {/* Meta row */}
+          <div className="flex flex-wrap items-center gap-4 text-sm text-slate-600">
+            {workshop.institution && (
+              <span className="flex items-center gap-1.5 font-medium">
+                <span className="text-violet-500">🏛</span> {workshop.institution}
+              </span>
+            )}
+            {formattedDate && (
+              <span className="flex items-center gap-1.5">
+                <span className="text-violet-500">📅</span> {formattedDate}
+              </span>
+            )}
+            <span className="flex items-center gap-1.5">
+              <span className="text-violet-500">◷</span> {workshop.durationDays} day{workshop.durationDays !== 1 ? "s" : ""}
+            </span>
+            {workshop.participantCount != null && workshop.participantCount > 0 && (
+              <span className="flex items-center gap-1.5">
+                <span className="text-violet-500">👥</span> {workshop.participantCount} participants
+              </span>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Cover Image */}
