@@ -48,7 +48,7 @@ export default async function EditDeploymentPage({
       <form action={updateDeployment} className="flex flex-col gap-6">
         <input type="hidden" name="id" value={project.id} />
 
-        <ImageDropzone name="heroAssetUrl" initialUrl={project.heroAssetUrl ?? ""} />
+        <ImageDropzone name="heroAssetUrl" initialUrl={project.heroAssetUrl ?? ""} aspectRatio={16/9} />
 
         <div className="flex flex-col gap-2">
           <label htmlFor="title" className="font-mono text-xs text-gray-400">PROJECT_TITLE</label>
@@ -99,6 +99,18 @@ export default async function EditDeploymentPage({
             required
             defaultValue={project.techStack.join(", ")}
             className="brutalist-box bg-transparent px-4 py-3 font-mono text-sm text-white focus:border-accent focus:outline-none"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="liveLink" className="font-mono text-xs text-gray-400">LIVE_LINK (Optional)</label>
+          <input 
+            type="url" 
+            id="liveLink" 
+            name="liveLink" 
+            defaultValue={project.liveLink ?? ""}
+            placeholder="e.g., https://navya-rover.example.com"
+            className="brutalist-box bg-transparent px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent"
           />
         </div>
 

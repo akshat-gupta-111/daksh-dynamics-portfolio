@@ -9,6 +9,7 @@ export const solutionsProjects = pgTable("solutions_projects", {
   abstract: varchar("abstract", { length: 300 }).notNull(),
   techStack: text("tech_stack").array().notNull(),
   heroAssetUrl: text("hero_asset_url"),
+  liveLink: varchar("live_link", { length: 500 }),
   architectureContent: text("architecture_content"),
   isPublished: boolean("is_published").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),

@@ -48,6 +48,7 @@ export default async function SolutionsPage() {
               tags={project.techStack}
               href={`/solutions/${project.slug}`}
               heroAssetUrl={project.heroAssetUrl}
+              liveLink={project.liveLink}
             />
           ))}
         </div>

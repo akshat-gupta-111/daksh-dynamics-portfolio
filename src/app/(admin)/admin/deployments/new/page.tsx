@@ -12,7 +12,7 @@ export default function NewDeploymentPage() {
 
       <form action={createDeployment} className="flex flex-col gap-6">
         {/* Asset Upload */}
-        <ImageDropzone name="heroAssetUrl" />
+        <ImageDropzone name="heroAssetUrl" aspectRatio={16/9} />
         {/* Title Input */}
         <div className="flex flex-col gap-2">
           <label htmlFor="title" className="font-mono text-xs text-gray-400">PROJECT_TITLE</label>
@@ -64,6 +64,18 @@ export default function NewDeploymentPage() {
             name="techStack" 
             required 
             placeholder="e.g., LangGraph, ESP32, Azure, Next.js"
+            className="brutalist-box px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent"
+          />
+        </div>
+
+        {/* Live Link Input */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="liveLink" className="font-mono text-xs text-gray-400">LIVE_LINK (Optional)</label>
+          <input 
+            type="url" 
+            id="liveLink" 
+            name="liveLink" 
+            placeholder="e.g., https://navya-rover.example.com"
             className="brutalist-box px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent"
           />
         </div>

@@ -1,6 +1,7 @@
-// filepath: src/components/ui/ArchitectureCard.tsx
+'use client'
+
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface ArchitectureCardProps {
   title: string;
@@ -8,6 +9,7 @@ interface ArchitectureCardProps {
   tags: string[];
   href: string;
   heroAssetUrl?: string | null;
+  liveLink?: string | null;
 }
 
 export default function ArchitectureCard({
@@ -16,9 +18,22 @@ export default function ArchitectureCard({
   tags,
   href,
   heroAssetUrl,
+  liveLink,
 }: ArchitectureCardProps) {
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(href);
+  };
+
   return (
-    <Link href={href} className="card group block overflow-hidden">
+    <div 
+      className="card group block overflow-hidden cursor-pointer"
+      onClick={handleCardClick}
+      role="link"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && handleCardClick()}
+    >
 
       {/* Cover image */}
       <div className="h-44 w-full bg-blue-50 flex items-center justify-center relative overflow-hidden">
@@ -69,10 +84,27 @@ export default function ArchitectureCard({
           )}
         </div>
 
-        <div className="mt-4 text-blue-600 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          View Details →
+        <div className="mt-4 flex items-center justify-between text-blue-600 text-sm font-semibold">
+          <span>View Details →</span>
+          {liveLink && (
+            <a 
+              href={liveLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-slate-400 hover:text-blue-600 flex items-center gap-1 transition-colors ml-4"
+              title="Visit Live Deployment"
+            >
+              <span>Live</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          )}
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

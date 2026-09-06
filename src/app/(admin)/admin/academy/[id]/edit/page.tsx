@@ -52,7 +52,7 @@ export default async function EditWorkshopPage({
       <form action={updateWorkshop} className="flex flex-col gap-6">
         <input type="hidden" name="id" value={workshop.id} />
 
-        <ImageDropzone name="coverImageUrl" initialUrl={workshop.coverImageUrl ?? ""} />
+        <ImageDropzone name="coverImageUrl" initialUrl={workshop.coverImageUrl ?? ""} aspectRatio={16/9} />
 
         <div className="flex flex-col gap-2">
           <label htmlFor="title" className="font-mono text-xs text-gray-400">WORKSHOP_TITLE</label>

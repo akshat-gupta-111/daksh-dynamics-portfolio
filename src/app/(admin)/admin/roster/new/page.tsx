@@ -13,7 +13,7 @@ export default function NewTeamMemberPage() {
       <form action={createTeamMember} className="flex flex-col gap-6">
 
         {/* Photo Upload */}
-        <ImageDropzone name="photoUrl" />
+        <ImageDropzone name="photoUrl" aspectRatio={1} />
 
         {/* Name & Slug */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -15,11 +15,12 @@ export async function createDeployment(formData: FormData) {
   const isPublished         = formData.get("isPublished") === "on";
   const heroAssetUrl        = (formData.get("heroAssetUrl") as string) || null;
   const architectureContent = (formData.get("architectureContent") as string) || null;
+  const liveLink            = (formData.get("liveLink") as string) || null;
 
   const techStack = rawTags.split(",").map(tag => tag.trim().toUpperCase()).filter(Boolean);
 
   await db.insert(solutionsProjects).values({
-    title, slug, abstract, techStack, isPublished, heroAssetUrl, architectureContent,
+    title, slug, abstract, techStack, isPublished, heroAssetUrl, architectureContent, liveLink
   });
 
   revalidatePath("/");
@@ -68,6 +69,7 @@ export async function updateDeployment(formData: FormData) {
 
   const heroAssetUrl = ((formData.get("heroAssetUrl") as string) || "").trim() || null;
   const architectureContent = ((formData.get("architectureContent") as string) || "").trim() || null;
+  const liveLink = ((formData.get("liveLink") as string) || "").trim() || null;
 
   await db
     .update(solutionsProjects)
@@ -78,6 +80,7 @@ export async function updateDeployment(formData: FormData) {
       techStack,
       heroAssetUrl,
       architectureContent,
+      liveLink,
       isPublished: formData.get("isPublished") === "on",
     })
     .where(eq(solutionsProjects.id, id));

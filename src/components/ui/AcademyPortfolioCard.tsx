@@ -92,10 +92,14 @@ export default function AcademyPortfolioCard({
 
         {/* Testimonial */}
         {testimonial && (
-          <blockquote className="text-xs text-slate-500 italic border-l-2 border-violet-300 pl-3 leading-relaxed mt-auto">
+          <blockquote className="text-xs text-slate-500 italic border-l-2 border-violet-300 pl-3 leading-relaxed mt-auto mb-4">
             &ldquo;{testimonial}&rdquo;
           </blockquote>
         )}
+        
+        <div className="mt-auto pt-4 text-violet-600 text-sm font-semibold">
+          View Details →
+        </div>
       </div>
     </div>
   );

@@ -115,9 +115,12 @@ export default function TeamMemberCard({
 
       {/* Tech DNA */}
       <div className="flex flex-wrap justify-center gap-1.5 mt-auto">
-        {techStack.map((t) => (
+        {techStack.slice(0, 5).map((t) => (
           <span key={t} className="badge-gray text-xs">{t}</span>
         ))}
+        {techStack.length > 5 && (
+          <span className="badge-gray text-xs">+{techStack.length - 5}</span>
+        )}
       </div>
 
       {/* View Profile link — shown as a real <Link> separately at the bottom, not wrapping the card */}
@@ -125,7 +128,7 @@ export default function TeamMemberCard({
         <Link
           href={`/team/${slug}`}
           onClick={(e) => e.stopPropagation()}
-          className="mt-4 text-blue-600 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
+          className="mt-4 text-blue-600 text-xs font-semibold"
         >
           View Profile →
         </Link>

@@ -13,7 +13,7 @@ export default function NewWorkshopPage() {
       <form action={createWorkshop} className="flex flex-col gap-6">
 
         {/* Cover Photo */}
-        <ImageDropzone name="coverImageUrl" />
+        <ImageDropzone name="coverImageUrl" aspectRatio={16/9} />
 
         {/* Title */}
         <div className="flex flex-col gap-2">

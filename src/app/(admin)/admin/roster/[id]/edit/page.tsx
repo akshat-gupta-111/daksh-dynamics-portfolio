@@ -48,7 +48,7 @@ export default async function EditTeamMemberPage({
       <form action={updateTeamMember} className="flex flex-col gap-6">
         <input type="hidden" name="id" value={member.id} />
 
-        <ImageDropzone name="photoUrl" initialUrl={member.photoUrl ?? ""} />
+        <ImageDropzone name="photoUrl" initialUrl={member.photoUrl ?? ""} aspectRatio={1} />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="flex flex-col gap-2">
