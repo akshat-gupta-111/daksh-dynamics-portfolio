@@ -17,8 +17,8 @@ export default async function HomePage() {
 
   // Fetch published brochures for both card types
   const brochures = await db.select().from(siteBrochures).where(eq(siteBrochures.isPublished, true));
-  const solutionsBrochure = brochures.find((b) => b.type === "solutions") ?? null;
-  const academyBrochure   = brochures.find((b) => b.type === "academy") ?? null;
+  const solutionsBrochures = brochures.filter((b) => b.type === "solutions");
+  const academyBrochures   = brochures.filter((b) => b.type === "academy");
 
   return (
     <div className="flex flex-col min-h-screen bg-[var(--color-bg)]">
@@ -88,7 +88,7 @@ export default async function HomePage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <div className="p-7">
+              <div className="px-7 pt-7 pb-4">
                 <h3 className="text-2xl font-bold text-slate-900 mb-3">Enterprise Solutions</h3>
                 <ul className="space-y-2 text-slate-600 text-sm mb-6">
                   {["Multi-Agent AI Systems", "IoT & Edge Robotics", "Custom Hardware Integration", "LangGraph Architectures"].map(item => (
@@ -100,14 +100,23 @@ export default async function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <span className="btn-blue text-sm inline-flex">Explore Deployments →</span>
               </div>
             </Link>
-            {/* Brochure download — only if published */}
-            {solutionsBrochure && (
-              <div className="px-7 pb-6 mt-auto">
+            
+            {/* Side-by-side action buttons */}
+            <div className="px-7 pb-4 flex flex-wrap items-center gap-3">
+              <Link href="/solutions" className="btn-blue text-sm inline-flex">Explore Deployments →</Link>
+              <Link href="/contact?type=enterprise" className="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors rounded-lg px-4 py-2.5 text-sm font-semibold shadow-sm inline-flex items-center">
+                Build for me!
+              </Link>
+            </div>
+            {/* Brochure downloads — only if published */}
+            {solutionsBrochures.length > 0 && (
+              <div className="px-7 pb-6 mt-auto flex flex-col gap-2">
+              {solutionsBrochures.map(brochure => (
                 <a
-                  href={solutionsBrochure.fileUrl}
+                  key={brochure.id}
+                  href={brochure.fileUrl}
                   download
                   target="_blank"
                   rel="noopener noreferrer"
@@ -116,9 +125,10 @@ export default async function HomePage() {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
                   </svg>
-                  {solutionsBrochure.title}
+                  {brochure.title}
                 </a>
-              </div>
+              ))}
+            </div>
             )}
           </div>
 
@@ -135,7 +145,7 @@ export default async function HomePage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <div className="p-7">
+              <div className="px-7 pt-7 pb-4">
                 <h3 className="text-2xl font-bold text-slate-900 mb-3">Academy & FDPs</h3>
                 <ul className="space-y-2 text-slate-600 text-sm mb-6">
                   {["Faculty Development Programs", "Technical Bootcamps", "Institution Workshops", "Hands-on Hardware Labs"].map(item => (
@@ -147,14 +157,23 @@ export default async function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <span className="btn-purple text-sm inline-flex">View Workshop Portfolio →</span>
               </div>
             </Link>
-            {/* Brochure download — only if published */}
-            {academyBrochure && (
-              <div className="px-7 pb-6 mt-auto">
+            
+            {/* Side-by-side action buttons */}
+            <div className="px-7 pb-4 flex flex-wrap items-center gap-3">
+              <Link href="/academy" className="btn-purple text-sm inline-flex">View Workshop Portfolio →</Link>
+              <Link href="/contact?type=academy" className="bg-white border-2 border-violet-600 text-violet-600 hover:bg-violet-50 transition-colors rounded-lg px-4 py-2.5 text-sm font-semibold shadow-sm inline-flex items-center">
+                Book for me!
+              </Link>
+            </div>
+            {/* Brochure downloads — only if published */}
+            {academyBrochures.length > 0 && (
+              <div className="px-7 pb-6 mt-auto flex flex-col gap-2">
+              {academyBrochures.map(brochure => (
                 <a
-                  href={academyBrochure.fileUrl}
+                  key={brochure.id}
+                  href={brochure.fileUrl}
                   download
                   target="_blank"
                   rel="noopener noreferrer"
@@ -163,9 +182,10 @@ export default async function HomePage() {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
                   </svg>
-                  {academyBrochure.title}
+                  {brochure.title}
                 </a>
-              </div>
+              ))}
+            </div>
             )}
           </div>
 
