@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import NavigationLoader from "@/components/layout/NavigationLoader";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className="bg-black text-white font-sans antialiased selection:bg-accent selection:text-black">
         <NavigationLoader />
         {children}
+        <Analytics />
       </body>
     </html>
   );
