@@ -91,6 +91,8 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
             src={workshop.coverImageUrl}
             alt={`${workshop.title} at ${workshop.institution ?? "workshop"}`}
             fill
+            sizes="100vw"
+            unoptimized={true}
             className="object-cover"
           />
         </div>

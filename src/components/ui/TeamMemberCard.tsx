@@ -57,6 +57,7 @@ export default function TeamMemberCard({
             alt={displayName}
             width={96}
             height={96}
+            unoptimized={true}
             className="w-full h-full object-cover object-top"
           />
         ) : (

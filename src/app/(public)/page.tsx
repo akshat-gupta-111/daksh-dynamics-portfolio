@@ -6,6 +6,8 @@ import { db } from "@/lib/db";
 import { siteMetrics, siteBrochures } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import MobileNavigation from "@/components/layout/MobileNavigation";
+import solutionsImg from "../../../public/illustrations/solutions.jpg";
+import academyImg from "../../../public/illustrations/academy.jpg";
 
 export default async function HomePage() {
   const [metrics] = await db.select().from(siteMetrics).limit(1);
@@ -76,11 +78,13 @@ export default async function HomePage() {
           {/* Solutions Card */}
           <div className="card-blue group overflow-hidden p-0 flex flex-col">
             <Link href="/solutions" className="block">
-              <div className="h-56 relative overflow-hidden">
+              <div className="h-56 relative overflow-hidden bg-slate-100">
                 <Image
-                  src="/illustrations/solutions.jpg"
+                  src={solutionsImg}
                   alt="Enterprise AI Systems"
                   fill
+                  placeholder="blur"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -121,11 +125,13 @@ export default async function HomePage() {
           {/* Academy Card */}
           <div className="card-purple group overflow-hidden p-0 flex flex-col">
             <Link href="/academy" className="block">
-              <div className="h-56 relative overflow-hidden">
+              <div className="h-56 relative overflow-hidden bg-purple-50">
                 <Image
-                  src="/illustrations/academy.jpg"
+                  src={academyImg}
                   alt="Academic Workshops"
                   fill
+                  placeholder="blur"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>

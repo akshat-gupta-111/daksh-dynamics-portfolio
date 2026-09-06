@@ -55,6 +55,8 @@ export default async function SolutionDetailPage({ params }: PageProps) {
             src={project.heroAssetUrl}
             alt={project.title}
             fill
+            sizes="100vw"
+            unoptimized={true}
             className="object-cover"
           />
         </div>
