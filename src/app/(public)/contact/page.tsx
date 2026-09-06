@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { submitContact } from "./actions";
 import OrbBackground from "@/components/ui/OrbBackground";
+import MobileNavigation from "@/components/layout/MobileNavigation";
 
 interface PageProps {
   searchParams: Promise<{ type?: string; sent?: string }>;
@@ -29,6 +30,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
               <Link href="/contact"   className="hover:text-slate-900 transition-colors">Contact</Link>
             </div>
             <Link href="/" className="btn-blue text-sm hidden md:inline-flex">← Home</Link>
+            <MobileNavigation ctaHref="/" ctaLabel="← Home" />
           </div>
         </nav>
         <main className="flex-1 flex items-center justify-center px-6 py-20">
@@ -67,6 +69,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
             <Link href="/contact"   className="hover:text-slate-900 transition-colors">Contact</Link>
           </div>
           <Link href="/contact" className="btn-blue text-sm hidden md:inline-flex">Get in Touch →</Link>
+          <MobileNavigation ctaHref="/contact" ctaLabel="Get in Touch →" />
         </div>
       </nav>
 
