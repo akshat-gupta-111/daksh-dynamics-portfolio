@@ -8,6 +8,10 @@ export default function NavigationLoader() {
   const [targetPath, setTargetPath] = useState<string | null>(null);
 
   useEffect(() => {
+    setTargetPath(null);
+  }, [pathname]);
+
+  useEffect(() => {
     const handleClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
         return;
