@@ -139,7 +139,7 @@ export default async function EditWorkshopPage({
               id="durationDays"
               name="durationDays"
               min={1}
-              max={30}
+              max={1000}
               defaultValue={workshop.durationDays}
               className="brutalist-box bg-transparent px-4 py-3 font-mono text-sm text-white focus:border-accent focus:outline-none"
             />
