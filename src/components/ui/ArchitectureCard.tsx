@@ -36,7 +36,7 @@ export default function ArchitectureCard({
     >
 
       {/* Cover image */}
-      <div className="h-44 w-full bg-blue-50 flex items-center justify-center relative overflow-hidden">
+      <div className="aspect-video w-full bg-blue-50 flex items-center justify-center relative overflow-hidden">
         {heroAssetUrl ? (
           <Image
             src={heroAssetUrl}

@@ -25,7 +25,7 @@ export default function AcademyPortfolioCard({
     <div className="card group overflow-hidden flex flex-col h-full">
 
       {/* Cover image */}
-      <div className="h-44 w-full bg-violet-50 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+      <div className="aspect-video w-full bg-violet-50 flex items-center justify-center relative overflow-hidden flex-shrink-0">
         {coverImageUrl ? (
           <Image
             src={coverImageUrl}

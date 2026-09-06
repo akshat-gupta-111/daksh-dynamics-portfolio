@@ -65,7 +65,7 @@ export default async function SolutionDetailPage({ params }: PageProps) {
 
       {/* Hero Image */}
       {project.heroAssetUrl && (
-        <div className="relative h-80 w-full rounded-2xl overflow-hidden mb-12 shadow-md">
+        <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-12 shadow-md">
           <Image
             src={project.heroAssetUrl}
             alt={project.title}

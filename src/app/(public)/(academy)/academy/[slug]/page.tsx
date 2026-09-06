@@ -86,7 +86,7 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
 
       {/* Cover Image */}
       {workshop.coverImageUrl && (
-        <div className="relative h-80 w-full rounded-2xl overflow-hidden mb-12 shadow-md">
+        <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-12 shadow-md">
           <Image
             src={workshop.coverImageUrl}
             alt={`${workshop.title} at ${workshop.institution ?? "workshop"}`}
