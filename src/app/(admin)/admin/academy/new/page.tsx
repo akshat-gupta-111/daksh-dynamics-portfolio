@@ -110,7 +110,7 @@ export default function NewWorkshopPage() {
               name="durationDays"
               defaultValue={3}
               min={1}
-              max={30}
+              max={1000}
               className="brutalist-box px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-accent bg-transparent"
             />
           </div>

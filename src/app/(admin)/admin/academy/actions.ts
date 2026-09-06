@@ -64,8 +64,8 @@ export async function updateWorkshop(formData: FormData) {
     throw new Error("Invalid program type");
   }
 
-  if (!Number.isInteger(durationDays) || durationDays < 1 || durationDays > 30) {
-    throw new Error("Duration must be between 1 and 30 days");
+  if (!Number.isInteger(durationDays) || durationDays < 1 || durationDays > 1000) {
+    throw new Error("Duration must be between 1 and 1000 days");
   }
 
   const participantCount = participantCountRaw ? Number(participantCountRaw) : null;
