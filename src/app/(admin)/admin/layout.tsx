@@ -34,6 +34,9 @@ export default function AdminLayout({
           <Link href="/admin/metrics" className="hover:text-accent hover:bg-gray-900 px-3 py-2 transition-colors">
             [6] METRICS
           </Link>
+          <Link href="/admin/brochures" className="hover:text-accent hover:bg-gray-900 px-3 py-2 transition-colors">
+            [7] Brochures
+          </Link>
         </nav>
         
         <div className="p-4 border-t border-gray-800 font-mono text-xs text-gray-600">

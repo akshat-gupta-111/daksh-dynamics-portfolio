@@ -91,7 +91,7 @@ export default async function HomePage() {
               <div className="px-7 pt-7 pb-4">
                 <h3 className="text-2xl font-bold text-slate-900 mb-3">Enterprise Solutions</h3>
                 <ul className="space-y-2 text-slate-600 text-sm mb-6">
-                  {["Multi-Agent AI Systems", "IoT & Edge Robotics", "Custom Hardware Integration", "LangGraph Architectures"].map(item => (
+                  {["Robust Websites", "Multi-Agent AI Systems", "IoT & Edge Robotics", "Custom Hardware Integration", "LangGraph Architectures"].map(item => (
                     <li key={item} className="flex items-center gap-2">
                       <span className="w-4 h-4 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
                         <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -192,22 +192,22 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Stats ──────────────────────────────────────────── */}
-      <section className="bg-white border-y border-slate-200 py-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <p className="section-label text-center mb-10">Impact at a glance</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+      {/* ── Stats (KPIs) ──────────────────────────────────────────── */}
+      <section className="bg-slate-50 border-y border-slate-200 py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <p className="section-label text-2xl text-slate-800 text-center mb-12">Impact at a glance</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { value: systemsDeployed,    suffix: "",   label: "Systems Deployed",     sub: "Enterprise AI · Robotics · IoT" },
               { value: workshopsConducted, suffix: "",   label: "Workshops Conducted",  sub: "FDPs · Bootcamps · Intensives" },
               { value: participantsTrained,suffix: participantsTrained > 0 ? "+" : "", label: "Participants Trained", sub: "Engineers · Researchers · Faculty" },
             ].map(({ value, suffix, label, sub }) => (
-              <div key={label} className="text-center px-8 py-8">
-                <p className="text-5xl font-extrabold text-slate-900 mb-1">
+              <div key={label} className="bg-white rounded-2xl p-8 text-center shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-300">
+                <p className="text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-600 mb-2">
                   {value > 0 ? `${value}${suffix}` : "—"}
                 </p>
-                <p className="font-semibold text-slate-700 text-sm mb-1">{label}</p>
-                <p className="text-slate-400 text-xs">{sub}</p>
+                <p className="font-bold text-slate-900 text-base mb-1">{label}</p>
+                <p className="text-slate-600 text-sm font-medium">{sub}</p>
               </div>
             ))}
           </div>
